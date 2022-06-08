@@ -64,7 +64,7 @@ public class Robot {
        }
     
     public boolean bateriaVacia(){
-        bateria=0;//faltaba incializar la bateria a 0
+        
         return bateria == 0;
     }
     

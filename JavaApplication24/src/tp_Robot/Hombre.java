@@ -52,13 +52,18 @@ public class Hombre {
                 robot.recargar();
             break;
             case 6:  
-                robot.bateriaLlena();
+                
+                if (robot.bateriaLlena()){
                 JOptionPane.showMessageDialog(null,"Bateria Llena");
-               
+                }
+                else{JOptionPane.showMessageDialog(null,"La Bateria no esta Llena");}
             break;
             case 7:
-                robot.bateriaVacia();
-                JOptionPane.showMessageDialog(null,"Bateria Vaciada");
+                if(robot.bateriaVacia()){
+                
+                JOptionPane.showMessageDialog(null,"Bateria Vacia");
+                }
+                else{ JOptionPane.showMessageDialog(null,"La bateria aun tiene carga");}
             break;
              case 8:
                 int e = (int) robot.enrgiaAcual();
