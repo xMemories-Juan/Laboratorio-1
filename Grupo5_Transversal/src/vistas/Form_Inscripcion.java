@@ -10,7 +10,7 @@ import java.awt.event.MouseEvent;
 import javax.swing.JTable;
 import javax.swing.WindowConstants;
 import javax.swing.table.DefaultTableModel;
-import modelo.Gestion_ulp;
+import modelo.Colegio;
 
 /**
  *
@@ -23,7 +23,7 @@ public class Form_Inscripcion extends javax.swing.JInternalFrame {
      * 
      */
     
-    Gestion_ulp gt;
+    Colegio gt;
     DefaultTableModel model = new DefaultTableModel();
             
     public Form_Inscripcion() {
