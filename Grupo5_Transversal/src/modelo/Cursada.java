@@ -10,11 +10,18 @@ package modelo;
  */
 public class Cursada {
     
-    private int idCursada;
-    private Alumno alumno;
+    
+    
+    
+    
+     private int idCursada;
+     private Alumno alumno;
      private Materia materia;
      private double nota;
 
+     
+     
+     
     public Cursada(int idCursada, Alumno alumno, Materia materia, double nota) {
         this.idCursada = idCursada;
         this.alumno = alumno;
@@ -22,15 +29,26 @@ public class Cursada {
         this.nota = nota;
     }
 
+    
+    
+    
     public Cursada(Alumno alumno, Materia materia, double nota) {
         this.alumno = alumno;
         this.materia = materia;
         this.nota = nota;
     }
 
+    
+    
+    
     public Cursada() {
     }
 
+    
+    
+    
+    
+    
     public int getIdCursada() {
         return idCursada;
     }
@@ -39,6 +57,11 @@ public class Cursada {
         this.idCursada = idCursada;
     }
 
+    
+    
+    
+    
+    
     public Alumno getAlumno() {
         return alumno;
     }
@@ -47,6 +70,11 @@ public class Cursada {
         this.alumno = alumno;
     }
 
+    
+    
+    
+    
+    
     public Materia getMateria() {
         return materia;
     }
@@ -55,6 +83,11 @@ public class Cursada {
         this.materia = materia;
     }
 
+    
+    
+    
+    
+    
     public double getNota() {
         return nota;
     }
@@ -63,6 +96,12 @@ public class Cursada {
         this.nota = nota;
     }
 
+    
+    
+    
+    
+    
+    
     @Override
     public int hashCode() {
         int hash = 7;
@@ -70,6 +109,11 @@ public class Cursada {
         return hash;
     }
 
+    
+    
+    
+    
+    
     @Override
     public boolean equals(Object obj) {
         if (this == obj) {
@@ -89,10 +133,13 @@ public class Cursada {
     }
           
     
+    
+    
+    
 
     @Override
     public String toString() {
-        return "Cursada{" + "idCursada=" + idCursada + ", alumno=" + alumno + ", materia=" + materia + ", nota=" + nota + '}';
+        return "Cursada >>>> {" + "idCursada = " + idCursada + ", alumno = " + alumno + ", materia = " + materia + ", nota = " + nota + '}';
     }
      
      

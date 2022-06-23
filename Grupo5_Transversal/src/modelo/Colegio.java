@@ -7,6 +7,7 @@ package modelo;
 
 import control.Conexion;
 import data.AlumnoData;
+import data.CursadaData;
 import data.MateriaData;
 
 import java.util.List;
@@ -35,18 +36,22 @@ public class Colegio {
         AlumnoData ad = new AlumnoData(conexion);
         
         Alumno pepe = new Alumno("Leticia","Moreira",LocalDate.of(1973, Month.MARCH, 12),2344553,true);     
-        Alumno ana = new Alumno("ana","lopez",LocalDate.of(1986, Month.MAY, 2),6639553,true);
+        Alumno ana = new Alumno("laura","ve",LocalDate.of(1986, Month.MAY, 2),6639553,true);
         
         
         
-        // probar agregar materia
+        
+        
+        
+        
+        
+ // probar agregar materia
         MateriaData md = new MateriaData(conexion);
-        Materia materia_1 = new Materia("lengua", 3, true);
+        Materia materia_1 = new Materia("inglés", 3, true);
         md.agregarMateria(materia_1);
         
         
-        
-        // probar buscar materia
+       // probar buscar materia
         List<Materia> lista_materias = md.obtenerMaterias();
         
         for(Materia materi:lista_materias){
@@ -56,6 +61,25 @@ public class Colegio {
             System.out.println("nombre  de materia "+materi.getNombre());
             
         }
+        
+        
+        
+        
+        
+        
+        
+// probar agregar  cursada
+        CursadaData cd = new CursadaData(conexion);
+        Cursada cur1 = new Cursada(ana, materia_1, 8);
+        cd.agregarCursada(cur1);
+        
+        
+        
+        
+        
+        
+        
+        
         
         
         
