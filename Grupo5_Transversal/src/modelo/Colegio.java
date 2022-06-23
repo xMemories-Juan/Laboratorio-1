@@ -7,6 +7,8 @@ package modelo;
 
 import control.Conexion;
 import data.AlumnoData;
+import data.MateriaData;
+
 import java.util.List;
 import java.sql.Connection;
 import java.time.LocalDate;
@@ -32,8 +34,19 @@ public class Colegio {
         
         AlumnoData ad = new AlumnoData(conexion);
         
-        Alumno pepe = new Alumno("Leticia","Moreira",LocalDate.of(1973, Month.MARCH, 12),2344553,true);
+        Alumno pepe = new Alumno("Leticia","Moreira",LocalDate.of(1973, Month.MARCH, 12),2344553,true);     
         Alumno ana = new Alumno("ana","lopez",LocalDate.of(1986, Month.MAY, 2),6639553,true);
+        
+        
+        
+        // probar agregar materia
+        MateriaData md = new MateriaData(conexion);
+        Materia materia_1 = new Materia("lengua", 3, true);
+        md.agregarMateria(materia_1);
+        
+        
+        
+        
         
         
         
@@ -60,6 +73,7 @@ public class Colegio {
             System.out.println("dni "+alu.getDni());
             System.out.println("apellido "+alu.getApellido());
             System.out.println("nombre "+alu.getNombre());
+            
         }
         
         

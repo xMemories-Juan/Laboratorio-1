@@ -13,7 +13,7 @@ import java.sql.SQLException;
 import java.sql.Statement;
 import java.util.ArrayList;
 import javax.swing.JOptionPane;
-import modelo.Alumno;
+import modelo.Materia;
 import java.util.List;
 
 /**
@@ -33,30 +33,31 @@ public class MateriaData {
     }
     
     //////////////////////////////
-    //////  agregar a BD  ////// 
+    //////  crear en BD  ////// 
     //////////////////////////////
     
     public boolean agregarMateria(Materia materia) {
 
         boolean insert = true;        
-        String sql = "INSERT INTO ALUMNO (nombre, apellido, fechNac, dni, activo)  VALUES (?, ?, ?, ?, ?)";
+        String sql = "INSERT INTO Materia (nombre, anio, activo)  VALUES (?, ?, ?)";
         
         try {
             
             PreparedStatement ps = con.prepareStatement(sql, Statement.RETURN_GENERATED_KEYS);            
-            ps.setString(1, alumno.getNombre());
-            ps.setString(2, alumno.getApellido());
-            ps.setDate(3, Date.valueOf(alumno.getFechNac()));//localDate a Date
-            ps.setLong(4, alumno.getDni());
-            ps.setBoolean(5, alumno.isActivo());            
+            ps.setString(1, materia.getNombre());
+            ps.setInt(2, materia.getAnio());
+            ps.setBoolean(3, materia.isActivo());            
             ps.executeUpdate();            
             ResultSet rs = ps.getGeneratedKeys();
-
-            JOptionPane.showMessageDialog(null, " Se agregó al alumno " + alumno + " correctamente");
+            JOptionPane.showMessageDialog(null, " Se agregó la materia " + materia + " correctamente");
+            
             if (rs.next()) {
-                alumno.setIdAlumno(rs.getInt(1));
+                
+                materia.setIdMateria(rs.getInt(1));
+                
             } else {
-               JOptionPane.showMessageDialog(null, "Error al intentar agregar al alumno");
+                
+               JOptionPane.showMessageDialog(null, "Error al intentar agregar la materia");
                 insert = false;
             }
 
@@ -65,8 +66,9 @@ public class MateriaData {
         } catch (SQLException ex) {
             
             insert=false;
+            
             if(ex instanceof java.sql.SQLIntegrityConstraintViolationException){
-                JOptionPane.showMessageDialog(null, "Ya existe un alumno con ese dni " );
+                JOptionPane.showMessageDialog(null, "Ya existe una materia con ese nombre " );
             }else {
             
                 JOptionPane.showMessageDialog(null, "Error de sintaxis "+ex );
@@ -80,8 +82,8 @@ public class MateriaData {
     
     
     
-    
-    
+  
+    /*
     
     //////////////////////////////
     //////  leer de BD  ////// 
@@ -113,7 +115,9 @@ public class MateriaData {
             ps.close();
             
         } catch (SQLException ex) {
+            
             JOptionPane.showMessageDialog(null,"Error al obtener alumnos");
+            
         }
 
         return alumnos;
@@ -121,6 +125,10 @@ public class MateriaData {
     
      
      
+    
+    
+    
+    
      
      public Alumno obtenerMateriaXId(int id){
      
@@ -156,6 +164,11 @@ public class MateriaData {
      
      
      
+    
+    
+    
+    
+    
      public Alumno obtenerMateriaXAnio(int dni){
      
         Alumno alumno=null;
@@ -255,4 +268,10 @@ public class MateriaData {
      return modificado;
      }   
     
-}
+     
+     */
+     
+     
+     
+     
+} // final de class MateriaData
