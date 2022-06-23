@@ -23,21 +23,37 @@ public class Colegio {
      * @param args the command line arguments
      */
     public static void main(String[] args) {
+        
         // TODO code application logic here        
-     Conexion conexion = new Conexion(); 
+        
+        Conexion conexion = new Conexion(); 
          
         Connection cn = conexion.getConexion();
         
-         AlumnoData ad=new AlumnoData(conexion);
-        Alumno pepe=new Alumno("Leticia","Moreira",LocalDate.of(1973, Month.MARCH, 12),2344553,true);
+        AlumnoData ad = new AlumnoData(conexion);
+        
+        Alumno pepe = new Alumno("Leticia","Moreira",LocalDate.of(1973, Month.MARCH, 12),2344553,true);
+        Alumno ana = new Alumno("ana","lopez",LocalDate.of(1986, Month.MAY, 2),6639553,true);
+        
+        
         
         if(ad.agregarAlumno(pepe)){
         
             JOptionPane.showMessageDialog(null, "Alumno Agregado Exitosamente");
         }
+        
+        
+        if(ad.agregarAlumno(ana)){
+        
+            JOptionPane.showMessageDialog(null, "Alumno Agregado Exitosamente");
+        }
+                
+                
+                
+        
 
         
-        List<Alumno> lista=ad.obtenerAlumnos();
+        List<Alumno> lista = ad.obtenerAlumnos();
         
         for(Alumno alu:lista){
         
@@ -45,6 +61,12 @@ public class Colegio {
             System.out.println("apellido "+alu.getApellido());
             System.out.println("nombre "+alu.getNombre());
         }
+        
+        
+        
+        System.out.println(" id 3 es >>> " + ad.obtenerAlumnoXId(3).getDni());
+        
+        
         /*System.out.println("-------------Buscamos por id----------------");
         Alumno aEncontrado=ad.obtenerAlumnoXId(3);
         if(aEncontrado!=null){
@@ -62,6 +84,8 @@ public class Colegio {
         //ad.borrarAlumno(3);
                     
     */
+        
+        
 }
 
     

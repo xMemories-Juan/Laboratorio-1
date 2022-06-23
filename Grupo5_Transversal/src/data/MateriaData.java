@@ -20,22 +20,23 @@ import java.util.List;
  *
  * @author saimon
  */
-public class AlumnoData {
+public class MateriaData {
     
     private Connection con = null;
 
   
   
-    public AlumnoData(Conexion conexion) {
+    public MateriaData(Conexion conexion) {
       
             con = conexion.getConexion();
         
     }
     
+    //////////////////////////////
+    //////  agregar a BD  ////// 
+    //////////////////////////////
     
-    
-    
-    public boolean agregarAlumno(Alumno alumno) {
+    public boolean agregarMateria(Materia materia) {
 
         boolean insert = true;        
         String sql = "INSERT INTO ALUMNO (nombre, apellido, fechNac, dni, activo)  VALUES (?, ?, ?, ?, ?)";
@@ -81,7 +82,13 @@ public class AlumnoData {
     
     
     
-     public List<Alumno> obtenerAlumnos() {
+    
+    //////////////////////////////
+    //////  leer de BD  ////// 
+    //////////////////////////////
+    
+    
+     public List<Alumno> obtenerMaterias() {
          
         ArrayList<Alumno> alumnos = new ArrayList<Alumno>();
 
@@ -115,7 +122,7 @@ public class AlumnoData {
      
      
      
-     public Alumno obtenerAlumnoXId(int id){
+     public Alumno obtenerMateriaXId(int id){
      
         Alumno alumno=null;
 
@@ -149,7 +156,7 @@ public class AlumnoData {
      
      
      
-     public Alumno obtenerAlumnoXDNI(long dni){
+     public Alumno obtenerMateriaXAnio(int dni){
      
         Alumno alumno=null;
 
@@ -182,6 +189,14 @@ public class AlumnoData {
      
      
      
+     
+     
+     
+         
+    //////////////////////////////
+    //////  borrar en BD  ////// 
+    //////////////////////////////
+     
      public boolean borrarAlumno(int id){
      
          boolean borrado=false;
@@ -209,6 +224,12 @@ public class AlumnoData {
      
      
      
+     
+     
+     
+     //////////////////////////////
+    //////  modificar en BD  ////// 
+    //////////////////////////////
      
      public boolean modificarAlumno(Alumno alumno){
      
