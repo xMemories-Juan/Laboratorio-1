@@ -46,9 +46,23 @@ public class Colegio {
         
         
         
+        // probar buscar materia
+        List<Materia> lista_materias = md.obtenerMaterias();
+        
+        for(Materia materi:lista_materias){
+            
+            System.out.println("anio "+materi.getAnio());
+
+            System.out.println("nombre  de materia "+materi.getNombre());
+            
+        }
         
         
         
+        
+System.out.println(" ------------------ ");
+System.out.println("  ");
+System.out.println(" ------------------ ");
         
         if(ad.agregarAlumno(pepe)){
         
@@ -63,6 +77,12 @@ public class Colegio {
                 
                 
                 
+        
+        
+        
+        
+        
+        
         
 
         

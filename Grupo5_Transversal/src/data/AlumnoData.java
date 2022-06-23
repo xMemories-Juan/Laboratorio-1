@@ -81,6 +81,10 @@ public class AlumnoData {
     
     
     
+    
+    
+    
+    
      public List<Alumno> obtenerAlumnos() {
          
         ArrayList<Alumno> alumnos = new ArrayList<Alumno>();
@@ -112,6 +116,11 @@ public class AlumnoData {
         return alumnos;
     }
     
+     
+     
+     
+     
+     
      
      
      

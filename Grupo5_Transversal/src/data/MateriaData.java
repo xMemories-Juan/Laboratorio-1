@@ -36,6 +36,8 @@ public class MateriaData {
     //////  crear en BD  ////// 
     //////////////////////////////
     
+    // falta comprobación de duplicado, permite agregar 2 veces la misma Materia
+    
     public boolean agregarMateria(Materia materia) {
 
         boolean insert = true;        
@@ -83,34 +85,35 @@ public class MateriaData {
     
     
   
-    /*
+  
     
     //////////////////////////////
     //////  leer de BD  ////// 
     //////////////////////////////
     
     
-     public List<Alumno> obtenerMaterias() {
+     public List<Materia> obtenerMaterias() {
          
-        ArrayList<Alumno> alumnos = new ArrayList<Alumno>();
+        ArrayList<Materia> materias = new ArrayList<Materia>();
 
         try {
             
-            String sql = "SELECT * FROM alumno WHERE activo = 1;";
+            String sql = "SELECT * FROM materia WHERE activo = 1;";
             PreparedStatement ps = con.prepareStatement(sql);        
             ResultSet resultSet = ps.executeQuery();            
-            Alumno alumno;
+            Materia  materia;
             
             while (resultSet.next()) {
                 
-                alumno = new Alumno();
-                alumno.setIdAlumno(resultSet.getInt("idAlumno"));
-                alumno.setApellido(resultSet.getString("apellido"));
-                alumno.setNombre(resultSet.getString("nombre"));
-                alumno.setFechNac(resultSet.getDate("fechNac").toLocalDate());
-                alumno.setDni(resultSet.getLong("dni"));
-                alumno.setActivo(resultSet.getBoolean("activo"));
-                alumnos.add(alumno);
+                materia = new Materia();
+                materia.setIdMateria(resultSet.getInt("idMateria"));
+
+                materia.setNombre(resultSet.getString("nombre"));
+                
+
+                materia.setAnio(resultSet.getInt("anio"));
+                materia.setActivo(resultSet.getBoolean("activo"));
+                materias.add(materia);
             }
             ps.close();
             
@@ -120,14 +123,19 @@ public class MateriaData {
             
         }
 
-        return alumnos;
+        return materias;
     }
     
      
      
     
+     
+     
     
-    
+      /*
+     
+     
+     
     
      
      public Alumno obtenerMateriaXId(int id){
@@ -210,7 +218,7 @@ public class MateriaData {
     //////  borrar en BD  ////// 
     //////////////////////////////
      
-     public boolean borrarAlumno(int id){
+     public boolean borrarMateria(int id){
      
          boolean borrado=false;
          
@@ -244,7 +252,7 @@ public class MateriaData {
     //////  modificar en BD  ////// 
     //////////////////////////////
      
-     public boolean modificarAlumno(Alumno alumno){
+     public boolean modificarMateria(Alumno alumno){
      
          String sql="UPDATE alumno SET nombre = ?, apellido = ?, fechNac = ?, dni = ?, activo = ? WHERE idAlumno = ?";
          boolean modificado=false;
