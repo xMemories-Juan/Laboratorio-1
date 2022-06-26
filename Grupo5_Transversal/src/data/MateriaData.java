@@ -132,15 +132,13 @@ public class MateriaData {
      
      
     
-      /*
+      
      
+   
      
+     public Materia obtenerMateriaXId(int id){
      
-    
-     
-     public Alumno obtenerMateriaXId(int id){
-     
-        Alumno alumno=null;
+        Materia materia = null;
 
         try {
             
@@ -151,22 +149,21 @@ public class MateriaData {
             
             while (resultSet.next()) {
                 
-                alumno = new Alumno();
-                alumno.setIdAlumno(resultSet.getInt("idAlumno"));
-                alumno.setApellido(resultSet.getString("apellido"));
-                alumno.setNombre(resultSet.getString("nombre"));
-                alumno.setFechNac(resultSet.getDate("fechNac").toLocalDate());
-                alumno.setDni(resultSet.getLong("dni"));
-                alumno.setActivo(resultSet.getBoolean("activo"));
+                materia = new Materia();
+                materia.setIdMateria(resultSet.getInt("idMateria"));
+                materia.setNombre(resultSet.getString("nombre"));
+                materia.setAnio(resultSet.getInt("anio"));
+                materia.setActivo(resultSet.getBoolean("activo"));
 
             }
+            
             ps.close();
             
         } catch (SQLException ex) {
             JOptionPane.showMessageDialog(null,"Error al obtener alumnos");
         }
 
-        return alumno;
+        return materia;
      }
 
      
@@ -175,6 +172,8 @@ public class MateriaData {
     
     
     
+      
+     /*
     
     
      public Alumno obtenerMateriaXAnio(int dni){

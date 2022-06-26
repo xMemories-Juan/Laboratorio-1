@@ -16,6 +16,7 @@ import javax.swing.JOptionPane;
 import modelo.Alumno;
 import java.util.List;
 import modelo.Cursada;
+import modelo.Materia;
 
 /**
  *
@@ -23,15 +24,24 @@ import modelo.Cursada;
  */
 public class CursadaData {
     
+    
+    
     private Connection con = null;
-
+    private AlumnoData alumData;
+    private MateriaData materiaData;
   
+    
+    
+    
+    
   
     public CursadaData(Conexion conexion) {
       
             con = conexion.getConexion();
         
     }
+    
+    
     
     
     
@@ -92,7 +102,10 @@ public class CursadaData {
     
     
     
-    /*
+  
+    
+    
+    
     
     
      public List<Cursada> obtenerCursadas() {
@@ -101,22 +114,29 @@ public class CursadaData {
 
         try {
             
-            String sql = "SELECT * FROM alumno WHERE activo = 1;";
+            String sql = "SELECT * FROM cursada;";
             PreparedStatement ps = con.prepareStatement(sql);        
             ResultSet resultSet = ps.executeQuery();            
-            Alumno alumno;
+            Cursada cursada;
             
             while (resultSet.next()) {
                 
-                alumno = new Alumno();
-                alumno.setIdAlumno(resultSet.getInt("idAlumno"));
-                alumno.setApellido(resultSet.getString("apellido"));
-                alumno.setNombre(resultSet.getString("nombre"));
-                alumno.setFechNac(resultSet.getDate("fechNac").toLocalDate());
-                alumno.setDni(resultSet.getLong("dni"));
-                alumno.setActivo(resultSet.getBoolean("activo"));
-                alumnos.add(alumno);
+                cursada = new Cursada();
+                cursada.setIdCursada(resultSet.getInt("id"));
+                
+                Alumno  alu = alumData.obtenerAlumnoXId(resultSet.getInt("idAlumno"));
+
+                cursada.setAlumno(alu);
+                
+                Materia materia = new Materia();
+                Materia m = materiaData.obtenerMateriaXId(resultSet.getInt("idMateria"));
+ 
+                cursada.setMateria(m);
+                
+                
+                cursadas.add(cursada);
             }
+            
             ps.close();
             
         } catch (SQLException ex) {
@@ -134,7 +154,7 @@ public class CursadaData {
     
     
     
-    
+      /*
     
     
     
