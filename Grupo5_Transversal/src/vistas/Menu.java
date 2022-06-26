@@ -8,6 +8,7 @@ package vistas;
 import modelo.Cursada;
 import modelo.Alumno;
 import modelo.Materia;
+
 import java.util.HashSet;
 
 /**
@@ -170,18 +171,28 @@ private HashSet<Materia> todasLasMaterias=new HashSet<>();
         
     }//GEN-LAST:event_jMenuItem2ActionPerformed
 
+    
+    
+    
+    
     private void jMenuItem3ActionPerformed(java.awt.event.ActionEvent evt) {//GEN-FIRST:event_jMenuItem3ActionPerformed
         // TODO add your handling code here:
         
           escritorio.removeAll();
-
+          
         Form_Inscripcion fc = new Form_Inscripcion(todosLosAlumnos,todasLasMaterias);
+        
+
         fc.setVisible(true);
         escritorio.add(fc);
         escritorio.repaint();
         escritorio.moveToFront(fc);
     }//GEN-LAST:event_jMenuItem3ActionPerformed
 
+    
+    
+    
+    
     private void jButton1ActionPerformed(java.awt.event.ActionEvent evt) {//GEN-FIRST:event_jButton1ActionPerformed
         dispose();
     }//GEN-LAST:event_jButton1ActionPerformed
