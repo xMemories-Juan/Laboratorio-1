@@ -7,19 +7,16 @@ package vistas;
 import java.sql.*;
 import java.awt.event.MouseAdapter;
 import java.awt.event.MouseEvent;
-import java.util.HashSet;
 import javax.swing.JTable;
 import javax.swing.WindowConstants;
 import javax.swing.table.DefaultTableModel;
-import modelo.Alumno;
 import modelo.Colegio;
-import modelo.Materia;
 
 /**
  *
  * @author saimon
  */
-public class Form_Inscripcion extends javax.swing.JInternalFrame {
+public class Form_Notas extends javax.swing.JInternalFrame {
 
     /**
      * Creates new form Form_Inscripcion
@@ -29,7 +26,7 @@ public class Form_Inscripcion extends javax.swing.JInternalFrame {
     Colegio gt;
     DefaultTableModel model = new DefaultTableModel();
             
-    public Form_Inscripcion(HashSet<Alumno> todosLosAlumnos, HashSet<Materia> todasLasMaterias) {
+    public Form_Notas() {
         initComponents();
         
         setDefaultCloseOperation(WindowConstants.DISPOSE_ON_CLOSE);
@@ -47,20 +44,11 @@ public class Form_Inscripcion extends javax.swing.JInternalFrame {
         
     }
 
-    
-    
-    
-    
-    
     @Override
     public String toString() {
         return "Form_Inscripcion{" + "jTab_alumno=" +  jTable_alumnos + '}';
     }
 
-    
-    
-    
-    
     /**
      * This method is called from within the constructor to initialize the form.
      * WARNING: Do NOT modify this code. The content of this method is always
@@ -78,17 +66,13 @@ public class Form_Inscripcion extends javax.swing.JInternalFrame {
         jBut_inscribir = new javax.swing.JButton();
         jBut_Anular = new javax.swing.JButton();
         jBut_salir = new javax.swing.JButton();
-        jL_listadoMaterias = new javax.swing.JLabel();
-        jRadBut_inscripas = new javax.swing.JRadioButton();
-        jRadBut_No_Inscscripta = new javax.swing.JRadioButton();
         jLabelfondo = new javax.swing.JLabel();
 
-        setPreferredSize(new java.awt.Dimension(715, 780));
         getContentPane().setLayout(new org.netbeans.lib.awtextra.AbsoluteLayout());
 
         jL_Inscripcion.setFont(new java.awt.Font("Consolas", 1, 36)); // NOI18N
-        jL_Inscripcion.setText("Formulario de Inscripción");
-        getContentPane().add(jL_Inscripcion, new org.netbeans.lib.awtextra.AbsoluteConstraints(100, 20, 500, 29));
+        jL_Inscripcion.setText("Carga de Notas");
+        getContentPane().add(jL_Inscripcion, new org.netbeans.lib.awtextra.AbsoluteConstraints(200, 20, 280, 29));
 
         jTable_alumnos.setModel(new javax.swing.table.DefaultTableModel(
             new Object [][] {
@@ -98,14 +82,14 @@ public class Form_Inscripcion extends javax.swing.JInternalFrame {
                 {null, null, null}
             },
             new String [] {
-                "Código Id", "Materia", "Año"
+                "Código Id", "Materia", "Nota"
             }
         ) {
             Class[] types = new Class [] {
                 java.lang.String.class, java.lang.String.class, java.lang.Integer.class
             };
             boolean[] canEdit = new boolean [] {
-                false, false, false
+                false, true, true
             };
 
             public Class getColumnClass(int columnIndex) {
@@ -122,45 +106,23 @@ public class Form_Inscripcion extends javax.swing.JInternalFrame {
 
         jL_Alumno.setFont(new java.awt.Font("Courier New", 0, 24)); // NOI18N
         jL_Alumno.setText("Alumno");
-        getContentPane().add(jL_Alumno, new org.netbeans.lib.awtextra.AbsoluteConstraints(210, 90, 90, 25));
+        getContentPane().add(jL_Alumno, new org.netbeans.lib.awtextra.AbsoluteConstraints(210, 160, 90, 25));
 
         jCbox_dato.setToolTipText("");
-        getContentPane().add(jCbox_dato, new org.netbeans.lib.awtextra.AbsoluteConstraints(310, 90, 157, 25));
+        getContentPane().add(jCbox_dato, new org.netbeans.lib.awtextra.AbsoluteConstraints(310, 160, 157, 25));
 
         jBut_inscribir.setText("Inscribir");
         getContentPane().add(jBut_inscribir, new org.netbeans.lib.awtextra.AbsoluteConstraints(30, 610, 130, 60));
 
         jBut_Anular.setText("Anular Inscripción ");
-        getContentPane().add(jBut_Anular, new org.netbeans.lib.awtextra.AbsoluteConstraints(270, 610, 130, 60));
+        getContentPane().add(jBut_Anular, new org.netbeans.lib.awtextra.AbsoluteConstraints(280, 610, 130, 60));
 
         jBut_salir.setText("Salir");
-        getContentPane().add(jBut_salir, new org.netbeans.lib.awtextra.AbsoluteConstraints(530, 610, 130, 60));
-
-        jL_listadoMaterias.setFont(new java.awt.Font("Courier New", 1, 36)); // NOI18N
-        jL_listadoMaterias.setText("Listado de Materias");
-        getContentPane().add(jL_listadoMaterias, new org.netbeans.lib.awtextra.AbsoluteConstraints(140, 160, -1, 27));
-
-        jRadBut_inscripas.setFont(new java.awt.Font("Courier New", 0, 24)); // NOI18N
-        jRadBut_inscripas.setText("Inscriptas");
-        jRadBut_inscripas.addActionListener(new java.awt.event.ActionListener() {
-            public void actionPerformed(java.awt.event.ActionEvent evt) {
-                jRadBut_inscripasActionPerformed(evt);
-            }
-        });
-        getContentPane().add(jRadBut_inscripas, new org.netbeans.lib.awtextra.AbsoluteConstraints(130, 200, 180, -1));
-
-        jRadBut_No_Inscscripta.setFont(new java.awt.Font("Courier New", 0, 24)); // NOI18N
-        jRadBut_No_Inscscripta.setText("No Inscriptas");
-        getContentPane().add(jRadBut_No_Inscscripta, new org.netbeans.lib.awtextra.AbsoluteConstraints(380, 200, -1, -1));
+        getContentPane().add(jBut_salir, new org.netbeans.lib.awtextra.AbsoluteConstraints(520, 610, 130, 60));
         getContentPane().add(jLabelfondo, new org.netbeans.lib.awtextra.AbsoluteConstraints(0, 0, 699, 606));
 
         pack();
     }// </editor-fold>//GEN-END:initComponents
-
-    private void jRadBut_inscripasActionPerformed(java.awt.event.ActionEvent evt) {//GEN-FIRST:event_jRadBut_inscripasActionPerformed
-        // TODO add your handling code here:
-       
-    }//GEN-LAST:event_jRadBut_inscripasActionPerformed
 
 
     // Variables declaration - do not modify//GEN-BEGIN:variables
@@ -170,10 +132,7 @@ public class Form_Inscripcion extends javax.swing.JInternalFrame {
     private javax.swing.JComboBox<String> jCbox_dato;
     private javax.swing.JLabel jL_Alumno;
     private javax.swing.JLabel jL_Inscripcion;
-    private javax.swing.JLabel jL_listadoMaterias;
     private javax.swing.JLabel jLabelfondo;
-    private javax.swing.JRadioButton jRadBut_No_Inscscripta;
-    private javax.swing.JRadioButton jRadBut_inscripas;
     private javax.swing.JScrollPane jScrollPane2;
     private javax.swing.JTable jTable_alumnos;
     // End of variables declaration//GEN-END:variables

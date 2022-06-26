@@ -38,6 +38,8 @@ public class CursadaData {
     public CursadaData(Conexion conexion) {
       
             con = conexion.getConexion();
+            this.alumData=new AlumnoData(conexion);
+            this.materiaData=new MateriaData(conexion);
         
     }
     
@@ -117,7 +119,7 @@ public class CursadaData {
             String sql = "SELECT * FROM cursada;";
             PreparedStatement ps = con.prepareStatement(sql);        
             ResultSet resultSet = ps.executeQuery();            
-            Cursada cursada;
+            Cursada cursada = null;
             
             while (resultSet.next()) {
                 
@@ -125,14 +127,12 @@ public class CursadaData {
                 cursada.setIdCursada(resultSet.getInt("id"));
                 
                 Alumno  alu = alumData.obtenerAlumnoXId(resultSet.getInt("idAlumno"));
-
                 cursada.setAlumno(alu);
                 
                 Materia materia = new Materia();
                 Materia m = materiaData.obtenerMateriaXId(resultSet.getInt("idMateria"));
- 
                 cursada.setMateria(m);
-                
+                cursada.setNota(resultSet.getDouble("nota"));
                 
                 cursadas.add(cursada);
             }
@@ -140,7 +140,7 @@ public class CursadaData {
             ps.close();
             
         } catch (SQLException ex) {
-            JOptionPane.showMessageDialog(null,"Error al obtener alumnos");
+            JOptionPane.showMessageDialog(null,"Error al obtener cursada    ");
         }
 
         return cursadas;

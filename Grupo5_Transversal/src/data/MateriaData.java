@@ -142,7 +142,7 @@ public class MateriaData {
 
         try {
             
-            String sql = "SELECT * FROM alumno WHERE idAlumno = ? AND activo = 1;";
+            String sql = "SELECT * FROM materia WHERE idMateria = ? AND activo = 1;";
             PreparedStatement ps = con.prepareStatement(sql);
             ps.setInt(1, id);
             ResultSet resultSet = ps.executeQuery();

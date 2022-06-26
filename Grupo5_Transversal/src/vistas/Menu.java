@@ -5,7 +5,7 @@
  */
 package vistas;
 
-
+import modelo.Cursada;
 import modelo.Alumno;
 import modelo.Materia;
 import java.util.HashSet;
@@ -15,6 +15,7 @@ import java.util.HashSet;
  * @author 54266
  */
 public class Menu extends javax.swing.JFrame {
+    
 private HashSet<Alumno> todosLosAlumnos=new HashSet<>();
 private HashSet<Materia> todasLasMaterias=new HashSet<>();
 
@@ -43,6 +44,7 @@ private HashSet<Materia> todasLasMaterias=new HashSet<>();
         jMenuItem1 = new javax.swing.JMenuItem();
         jMenuItem2 = new javax.swing.JMenuItem();
         jMenuItem3 = new javax.swing.JMenuItem();
+        jMenuItem6 = new javax.swing.JMenuItem();
         jMenu3 = new javax.swing.JMenu();
         jMenuItem5 = new javax.swing.JMenuItem();
 
@@ -51,6 +53,7 @@ private HashSet<Materia> todasLasMaterias=new HashSet<>();
         jMenu2.setText("jMenu2");
 
         setDefaultCloseOperation(javax.swing.WindowConstants.EXIT_ON_CLOSE);
+        setPreferredSize(new java.awt.Dimension(800, 900));
 
         jButton1.setText("Salir");
         jButton1.addActionListener(new java.awt.event.ActionListener() {
@@ -96,13 +99,16 @@ private HashSet<Materia> todasLasMaterias=new HashSet<>();
         });
         jMenu1.add(jMenuItem2);
 
-        jMenuItem3.setText("Formulario de Inscipción");
+        jMenuItem3.setText("Formulario de Inscripción");
         jMenuItem3.addActionListener(new java.awt.event.ActionListener() {
             public void actionPerformed(java.awt.event.ActionEvent evt) {
                 jMenuItem3ActionPerformed(evt);
             }
         });
         jMenu1.add(jMenuItem3);
+
+        jMenuItem6.setText("Formulario de Carga de Notas");
+        jMenu1.add(jMenuItem6);
 
         jMenuBar1.add(jMenu1);
 
@@ -169,11 +175,11 @@ private HashSet<Materia> todasLasMaterias=new HashSet<>();
         
           escritorio.removeAll();
 
-        Inscripcion fm=new Inscripcion(todosLosAlumnos,todasLasMaterias);
-        fm.setVisible(true);
-        escritorio.add(fm);
+        Form_Inscripcion fc = new Form_Inscripcion(todosLosAlumnos,todasLasMaterias);
+        fc.setVisible(true);
+        escritorio.add(fc);
         escritorio.repaint();
-        escritorio.moveToFront(fm);
+        escritorio.moveToFront(fc);
     }//GEN-LAST:event_jMenuItem3ActionPerformed
 
     private void jButton1ActionPerformed(java.awt.event.ActionEvent evt) {//GEN-FIRST:event_jButton1ActionPerformed
@@ -238,5 +244,6 @@ private HashSet<Materia> todasLasMaterias=new HashSet<>();
     private javax.swing.JMenuItem jMenuItem3;
     private javax.swing.JMenuItem jMenuItem4;
     private javax.swing.JMenuItem jMenuItem5;
+    private javax.swing.JMenuItem jMenuItem6;
     // End of variables declaration//GEN-END:variables
 }
