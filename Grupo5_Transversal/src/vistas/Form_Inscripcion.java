@@ -2,13 +2,17 @@
  * Click nbfs://nbhost/SystemFileSystem/Templates/Licenses/license-default.txt to change this license
  * Click nbfs://nbhost/SystemFileSystem/Templates/GUIForms/JInternalFrame.java to edit this template
  */
+
+
 package vistas;
 
 
 import java.sql.*;
+
 import java.awt.event.MouseAdapter;
 import java.awt.event.MouseEvent;
 
+import java.util.ArrayList;
 import java.util.HashSet;
 import java.util.List;
 
@@ -23,7 +27,7 @@ import modelo.Colegio;
 import modelo.Materia;
 
 import control.Conexion;
-import java.util.ArrayList;
+
 /**
  *
  * @author saimon
@@ -45,9 +49,7 @@ public class Form_Inscripcion extends javax.swing.JInternalFrame {
         
         setDefaultCloseOperation(WindowConstants.DISPOSE_ON_CLOSE);
         
-        initComponents();
-        
-        setDefaultCloseOperation(WindowConstants.DISPOSE_ON_CLOSE);
+
                 
         modelo = new DefaultTableModel();
         
@@ -137,7 +139,7 @@ public class Form_Inscripcion extends javax.swing.JInternalFrame {
         jRadBut_No_Inscscripta = new javax.swing.JRadioButton();
         jLabelfondo = new javax.swing.JLabel();
 
-        setPreferredSize(new java.awt.Dimension(715, 780));
+        setPreferredSize(new java.awt.Dimension(750, 750));
         getContentPane().setLayout(new org.netbeans.lib.awtextra.AbsoluteLayout());
 
         jL_Inscripcion.setFont(new java.awt.Font("Consolas", 1, 36)); // NOI18N
@@ -186,14 +188,20 @@ public class Form_Inscripcion extends javax.swing.JInternalFrame {
         jCbox_dato.setToolTipText("");
         getContentPane().add(jCbox_dato, new org.netbeans.lib.awtextra.AbsoluteConstraints(310, 90, 157, 25));
 
+        jBut_inscribir.setBackground(new java.awt.Color(204, 204, 204));
+        jBut_inscribir.setFont(new java.awt.Font("Consolas", 1, 24)); // NOI18N
         jBut_inscribir.setText("Inscribir");
-        getContentPane().add(jBut_inscribir, new org.netbeans.lib.awtextra.AbsoluteConstraints(30, 610, 130, 60));
+        getContentPane().add(jBut_inscribir, new org.netbeans.lib.awtextra.AbsoluteConstraints(30, 570, 200, 55));
 
+        jBut_Anular.setBackground(new java.awt.Color(204, 204, 204));
+        jBut_Anular.setFont(new java.awt.Font("Consolas", 1, 24)); // NOI18N
         jBut_Anular.setText("Anular Inscripción ");
-        getContentPane().add(jBut_Anular, new org.netbeans.lib.awtextra.AbsoluteConstraints(270, 610, 130, 60));
+        getContentPane().add(jBut_Anular, new org.netbeans.lib.awtextra.AbsoluteConstraints(250, 570, 280, 55));
 
+        jBut_salir.setBackground(new java.awt.Color(204, 204, 204));
+        jBut_salir.setFont(new java.awt.Font("Consolas", 1, 24)); // NOI18N
         jBut_salir.setText("Salir");
-        getContentPane().add(jBut_salir, new org.netbeans.lib.awtextra.AbsoluteConstraints(530, 610, 130, 60));
+        getContentPane().add(jBut_salir, new org.netbeans.lib.awtextra.AbsoluteConstraints(550, 570, 110, 55));
 
         jL_listadoMaterias.setFont(new java.awt.Font("Courier New", 1, 36)); // NOI18N
         jL_listadoMaterias.setText("Listado de Materias");
@@ -258,6 +266,8 @@ private void llenarTabla() {
     
             Conexion conexion = new Conexion(); 
             Connection cn = conexion.getConexion();
+            
+            //probando con mostrar objetos Materia desde DB, tiene que mostrar cursadas
             MateriaData md = new MateriaData(conexion);
             List<Materia> lista_materias = md.obtenerMaterias();
             

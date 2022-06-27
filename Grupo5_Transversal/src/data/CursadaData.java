@@ -59,7 +59,7 @@ public class CursadaData {
         try {
             
             PreparedStatement ps = con.prepareStatement(sql, Statement.RETURN_GENERATED_KEYS);        
-             System.out.println("1 ");
+                System.out.println("1 ");
             ps.setInt(1, cursada.getAlumno().getIdAlumno());
                 System.out.println("2");
             ps.setInt(2, cursada.getMateria().getIdMateria());
@@ -138,6 +138,7 @@ public class CursadaData {
                 
                 Materia materia = new Materia();
                 Materia m = materiaData.obtenerMateriaXId(resultSet.getInt("idMateria"));
+                
                 cursada.setMateria(m);
                 cursada.setNota(resultSet.getDouble("nota"));
                 

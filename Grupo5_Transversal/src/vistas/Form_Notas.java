@@ -5,12 +5,19 @@
 package vistas;
 
 import java.sql.*;
+
 import java.awt.event.MouseAdapter;
 import java.awt.event.MouseEvent;
+
+import java.util.HashSet;
+
 import javax.swing.JTable;
 import javax.swing.WindowConstants;
 import javax.swing.table.DefaultTableModel;
+
+import modelo.Alumno;
 import modelo.Colegio;
+import modelo.Materia;
 
 /**
  *
@@ -26,7 +33,7 @@ public class Form_Notas extends javax.swing.JInternalFrame {
     Colegio gt;
     DefaultTableModel model = new DefaultTableModel();
             
-    public Form_Notas() {
+    public Form_Notas(HashSet<Alumno> todosLosAlumnos, HashSet<Materia> todasLasMaterias) {
         initComponents();
         
         setDefaultCloseOperation(WindowConstants.DISPOSE_ON_CLOSE);
@@ -64,10 +71,11 @@ public class Form_Notas extends javax.swing.JInternalFrame {
         jL_Alumno = new javax.swing.JLabel();
         jCbox_dato = new javax.swing.JComboBox<>();
         jBut_inscribir = new javax.swing.JButton();
-        jBut_Anular = new javax.swing.JButton();
         jBut_salir = new javax.swing.JButton();
         jLabelfondo = new javax.swing.JLabel();
 
+        setPreferredSize(new java.awt.Dimension(750, 650));
+        setRequestFocusEnabled(false);
         getContentPane().setLayout(new org.netbeans.lib.awtextra.AbsoluteLayout());
 
         jL_Inscripcion.setFont(new java.awt.Font("Consolas", 1, 36)); // NOI18N
@@ -102,31 +110,31 @@ public class Form_Notas extends javax.swing.JInternalFrame {
         });
         jScrollPane2.setViewportView(jTable_alumnos);
 
-        getContentPane().add(jScrollPane2, new org.netbeans.lib.awtextra.AbsoluteConstraints(30, 250, 630, 280));
+        getContentPane().add(jScrollPane2, new org.netbeans.lib.awtextra.AbsoluteConstraints(30, 180, 630, 280));
 
         jL_Alumno.setFont(new java.awt.Font("Courier New", 0, 24)); // NOI18N
         jL_Alumno.setText("Alumno");
-        getContentPane().add(jL_Alumno, new org.netbeans.lib.awtextra.AbsoluteConstraints(210, 160, 90, 25));
+        getContentPane().add(jL_Alumno, new org.netbeans.lib.awtextra.AbsoluteConstraints(210, 110, 90, 25));
 
         jCbox_dato.setToolTipText("");
-        getContentPane().add(jCbox_dato, new org.netbeans.lib.awtextra.AbsoluteConstraints(310, 160, 157, 25));
+        getContentPane().add(jCbox_dato, new org.netbeans.lib.awtextra.AbsoluteConstraints(310, 110, 157, 25));
 
-        jBut_inscribir.setText("Inscribir");
-        getContentPane().add(jBut_inscribir, new org.netbeans.lib.awtextra.AbsoluteConstraints(30, 610, 130, 60));
+        jBut_inscribir.setBackground(new java.awt.Color(204, 204, 204));
+        jBut_inscribir.setFont(new java.awt.Font("Consolas", 1, 24)); // NOI18N
+        jBut_inscribir.setText("Guardar nota");
+        getContentPane().add(jBut_inscribir, new org.netbeans.lib.awtextra.AbsoluteConstraints(30, 500, 190, 55));
 
-        jBut_Anular.setText("Anular Inscripción ");
-        getContentPane().add(jBut_Anular, new org.netbeans.lib.awtextra.AbsoluteConstraints(280, 610, 130, 60));
-
+        jBut_salir.setBackground(new java.awt.Color(204, 204, 204));
+        jBut_salir.setFont(new java.awt.Font("Consolas", 1, 24)); // NOI18N
         jBut_salir.setText("Salir");
-        getContentPane().add(jBut_salir, new org.netbeans.lib.awtextra.AbsoluteConstraints(520, 610, 130, 60));
-        getContentPane().add(jLabelfondo, new org.netbeans.lib.awtextra.AbsoluteConstraints(0, 0, 699, 606));
+        getContentPane().add(jBut_salir, new org.netbeans.lib.awtextra.AbsoluteConstraints(560, 500, 100, 55));
+        getContentPane().add(jLabelfondo, new org.netbeans.lib.awtextra.AbsoluteConstraints(0, -50, 699, 606));
 
         pack();
     }// </editor-fold>//GEN-END:initComponents
 
 
     // Variables declaration - do not modify//GEN-BEGIN:variables
-    private javax.swing.JButton jBut_Anular;
     private javax.swing.JButton jBut_inscribir;
     private javax.swing.JButton jBut_salir;
     private javax.swing.JComboBox<String> jCbox_dato;

@@ -26,12 +26,10 @@ public class Colegio {
      * @param args the command line arguments
      */
     public static void main(String[] args) {
+    
         
-        // TODO code application logic here        
-        
-        Conexion conexion = new Conexion(); 
-         
-        Connection cn = conexion.getConexion();
+        Conexion conexion = new Conexion();          
+        Connection cn = conexion.getConexion();     
         
         AlumnoData ad = new AlumnoData(conexion);
         
@@ -47,11 +45,16 @@ public class Colegio {
         
  // probar agregar materia
         MateriaData md = new MateriaData(conexion);
-        Materia materia_1 = new Materia("matemáticas", 3, true);
+        Materia materia_1 = new Materia("e", 2, true);
         md.agregarMateria(materia_1);
         
         
-       // probar buscar materia
+        
+        
+        
+        
+
+// probar buscar materia
         List<Materia> lista_materias = md.obtenerMaterias();
         
         for(Materia materi:lista_materias){
@@ -70,7 +73,7 @@ public class Colegio {
         
 // probar agregar  cursada
         CursadaData cd = new CursadaData(conexion);
-        Cursada cur1 = new Cursada(ana, materia_1, 8);
+        Cursada cur1 = new Cursada(pepe, materia_1, 3);
         cd.agregarCursada(cur1);
         
         
