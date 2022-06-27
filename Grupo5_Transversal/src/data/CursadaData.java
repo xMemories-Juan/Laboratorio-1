@@ -54,13 +54,15 @@ public class CursadaData {
     public boolean agregarCursada(Cursada cursada) {
 
         boolean insert = true;        
-        String sql = "INSERT INTO cursada (alumno, materia, nota)  VALUES (?, ?, ?)";
+        String sql = "INSERT INTO cursada (idAlumno, idMateria, nota)  VALUES (?, ?, ?)";
         
         try {
             
-            PreparedStatement ps = con.prepareStatement(sql, Statement.RETURN_GENERATED_KEYS);            
-            ps.setString(1, cursada.getAlumno().getNombre());
-            ps.setString(2, cursada.getMateria().getNombre());
+            PreparedStatement ps = con.prepareStatement(sql, Statement.RETURN_GENERATED_KEYS);        
+             System.out.println("1 ");
+            ps.setInt(1, cursada.getAlumno().getIdAlumno());
+                System.out.println("2");
+            ps.setInt(2, cursada.getMateria().getIdMateria());
             ps.setDouble(3, cursada.getNota());          
             ps.executeUpdate();            
             ResultSet rs = ps.getGeneratedKeys();
@@ -69,11 +71,16 @@ public class CursadaData {
             if (rs.next()) {
                 
                 cursada.setIdCursada(rs.getInt(1));
-            } else {
+                
+            } 
+            else {
+                
                JOptionPane.showMessageDialog(null, "Error al intentar agregar la cursada");
                 insert = false;
+                
             }
 
+            
             ps.close();
             
             
@@ -83,11 +90,11 @@ public class CursadaData {
             insert=false;
             
             if(ex instanceof java.sql.SQLIntegrityConstraintViolationException){
-                JOptionPane.showMessageDialog(null, "Ya existe un alumno con ese dni " );
+                JOptionPane.showMessageDialog(null, "Ya existe cursadaa " );
                 
             }else {
             
-                JOptionPane.showMessageDialog(null, "Error de sintaxis "+ex );
+                JOptionPane.showMessageDialog(null, "Error de sintaxisss "+ex );
                 
             }
             

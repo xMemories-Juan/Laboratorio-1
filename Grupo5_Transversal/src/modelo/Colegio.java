@@ -35,8 +35,8 @@ public class Colegio {
         
         AlumnoData ad = new AlumnoData(conexion);
         
-        Alumno pepe = new Alumno("Leticia","Moreira",LocalDate.of(1973, Month.MARCH, 12),2344553,true);     
-        Alumno ana = new Alumno("laura","ve",LocalDate.of(1986, Month.MAY, 2),6639553,true);
+        Alumno pepe = new Alumno("Juana","Mor",LocalDate.of(1963, Month.MARCH, 12),2336653,true);     
+        Alumno ana = new Alumno("jota","ve",LocalDate.of(1986, Month.MAY, 2),11553,true);
         
         
         
@@ -47,7 +47,7 @@ public class Colegio {
         
  // probar agregar materia
         MateriaData md = new MateriaData(conexion);
-        Materia materia_1 = new Materia("inglés", 3, true);
+        Materia materia_1 = new Materia("matemáticas", 3, true);
         md.agregarMateria(materia_1);
         
         
