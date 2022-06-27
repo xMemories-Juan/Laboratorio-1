@@ -1,5 +1,7 @@
 
-ULP-TUDS-A-22 - Laboratorio de Programación l C2
+# Universidad de la Punta
+# TUDS-A-22 
+# Laboratorio de Programación l - Comisión 2
 
 
 Proyecto Transversal Entrega 1:.- Proyecto Universidad(Actividad Grupal)
