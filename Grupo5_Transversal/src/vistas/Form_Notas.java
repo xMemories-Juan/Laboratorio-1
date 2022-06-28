@@ -76,11 +76,9 @@ public class Form_Notas extends javax.swing.JInternalFrame {
 
         setPreferredSize(new java.awt.Dimension(750, 650));
         setRequestFocusEnabled(false);
-        getContentPane().setLayout(new org.netbeans.lib.awtextra.AbsoluteLayout());
 
         jL_Inscripcion.setFont(new java.awt.Font("Consolas", 1, 36)); // NOI18N
         jL_Inscripcion.setText("Carga de Notas");
-        getContentPane().add(jL_Inscripcion, new org.netbeans.lib.awtextra.AbsoluteConstraints(200, 20, 280, 29));
 
         jTable_alumnos.setModel(new javax.swing.table.DefaultTableModel(
             new Object [][] {
@@ -110,25 +108,61 @@ public class Form_Notas extends javax.swing.JInternalFrame {
         });
         jScrollPane2.setViewportView(jTable_alumnos);
 
-        getContentPane().add(jScrollPane2, new org.netbeans.lib.awtextra.AbsoluteConstraints(30, 180, 630, 280));
-
         jL_Alumno.setFont(new java.awt.Font("Courier New", 0, 24)); // NOI18N
         jL_Alumno.setText("Alumno");
-        getContentPane().add(jL_Alumno, new org.netbeans.lib.awtextra.AbsoluteConstraints(210, 110, 90, 25));
 
         jCbox_dato.setToolTipText("");
-        getContentPane().add(jCbox_dato, new org.netbeans.lib.awtextra.AbsoluteConstraints(310, 110, 157, 25));
 
         jBut_inscribir.setBackground(new java.awt.Color(204, 204, 204));
         jBut_inscribir.setFont(new java.awt.Font("Consolas", 1, 24)); // NOI18N
         jBut_inscribir.setText("Guardar nota");
-        getContentPane().add(jBut_inscribir, new org.netbeans.lib.awtextra.AbsoluteConstraints(30, 500, 190, 55));
 
         jBut_salir.setBackground(new java.awt.Color(204, 204, 204));
         jBut_salir.setFont(new java.awt.Font("Consolas", 1, 24)); // NOI18N
         jBut_salir.setText("Salir");
-        getContentPane().add(jBut_salir, new org.netbeans.lib.awtextra.AbsoluteConstraints(560, 500, 100, 55));
-        getContentPane().add(jLabelfondo, new org.netbeans.lib.awtextra.AbsoluteConstraints(0, -50, 699, 606));
+
+        javax.swing.GroupLayout layout = new javax.swing.GroupLayout(getContentPane());
+        getContentPane().setLayout(layout);
+        layout.setHorizontalGroup(
+            layout.createParallelGroup(javax.swing.GroupLayout.Alignment.LEADING)
+            .addGroup(layout.createSequentialGroup()
+                .addGap(210, 210, 210)
+                .addComponent(jL_Alumno, javax.swing.GroupLayout.PREFERRED_SIZE, 90, javax.swing.GroupLayout.PREFERRED_SIZE))
+            .addGroup(layout.createSequentialGroup()
+                .addGap(30, 30, 30)
+                .addComponent(jScrollPane2, javax.swing.GroupLayout.PREFERRED_SIZE, 630, javax.swing.GroupLayout.PREFERRED_SIZE))
+            .addGroup(layout.createSequentialGroup()
+                .addGap(30, 30, 30)
+                .addComponent(jBut_inscribir, javax.swing.GroupLayout.PREFERRED_SIZE, 190, javax.swing.GroupLayout.PREFERRED_SIZE)
+                .addGap(340, 340, 340)
+                .addComponent(jBut_salir, javax.swing.GroupLayout.PREFERRED_SIZE, 100, javax.swing.GroupLayout.PREFERRED_SIZE))
+            .addGroup(layout.createSequentialGroup()
+                .addGap(200, 200, 200)
+                .addComponent(jL_Inscripcion))
+            .addGroup(layout.createSequentialGroup()
+                .addGap(310, 310, 310)
+                .addComponent(jCbox_dato, javax.swing.GroupLayout.PREFERRED_SIZE, 157, javax.swing.GroupLayout.PREFERRED_SIZE))
+            .addComponent(jLabelfondo, javax.swing.GroupLayout.PREFERRED_SIZE, 699, javax.swing.GroupLayout.PREFERRED_SIZE)
+        );
+        layout.setVerticalGroup(
+            layout.createParallelGroup(javax.swing.GroupLayout.Alignment.LEADING)
+            .addGroup(layout.createSequentialGroup()
+                .addGap(160, 160, 160)
+                .addComponent(jL_Alumno, javax.swing.GroupLayout.PREFERRED_SIZE, 25, javax.swing.GroupLayout.PREFERRED_SIZE)
+                .addGap(45, 45, 45)
+                .addComponent(jScrollPane2, javax.swing.GroupLayout.PREFERRED_SIZE, 280, javax.swing.GroupLayout.PREFERRED_SIZE)
+                .addGap(40, 40, 40)
+                .addGroup(layout.createParallelGroup(javax.swing.GroupLayout.Alignment.LEADING)
+                    .addComponent(jBut_inscribir, javax.swing.GroupLayout.PREFERRED_SIZE, 55, javax.swing.GroupLayout.PREFERRED_SIZE)
+                    .addComponent(jBut_salir, javax.swing.GroupLayout.PREFERRED_SIZE, 55, javax.swing.GroupLayout.PREFERRED_SIZE)))
+            .addGroup(layout.createSequentialGroup()
+                .addGap(70, 70, 70)
+                .addComponent(jL_Inscripcion, javax.swing.GroupLayout.PREFERRED_SIZE, 29, javax.swing.GroupLayout.PREFERRED_SIZE))
+            .addGroup(layout.createSequentialGroup()
+                .addGap(160, 160, 160)
+                .addComponent(jCbox_dato, javax.swing.GroupLayout.PREFERRED_SIZE, 25, javax.swing.GroupLayout.PREFERRED_SIZE))
+            .addComponent(jLabelfondo, javax.swing.GroupLayout.PREFERRED_SIZE, 606, javax.swing.GroupLayout.PREFERRED_SIZE)
+        );
 
         pack();
     }// </editor-fold>//GEN-END:initComponents

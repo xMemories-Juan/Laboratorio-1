@@ -33,7 +33,7 @@ public class InscripcionData {
             this.materiaData=new MateriaData(conexion);            
         
     }
-    
+   
    public boolean verificarCursada(int idMateria, int idAlumno) {        //con esto verifico qie un alumno no este inscripto en una materia dos veces
         boolean res = false;       
         String comprueba = "SELECT * FROM cursada WHERE idMateria =? AND idAlumno=?;";
@@ -97,7 +97,7 @@ public class InscripcionData {
                 inscripcion.setIdCursada(resultSet.getInt("id"));
                 Alumno a = alumData.obtenerAlumnoXId(resultSet.getInt("idAlumno"));
                 inscripcion.setAlumno(a);
-                Materia m = materiaData.obtenerMateriaXid(resultSet.getInt("idMateria"));               
+                Materia m = materiaData.obtenerMateriaXId(resultSet.getInt("idMateria"));               
                 inscripcion.setMateria(m);
                 inscripcion.setNota(resultSet.getDouble("nota"));
                 inscripciones.add(inscripcion);
@@ -158,6 +158,7 @@ public boolean borrarCursada(int idA, int idM){
      
      return borrada;
 }  
+
 
 
 public List<Materia> obtenerMateriasCursadas(int idA){
