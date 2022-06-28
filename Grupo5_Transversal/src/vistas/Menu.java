@@ -5,9 +5,10 @@
  */
 package vistas;
 
-
+import modelo.Cursada;
 import modelo.Alumno;
 import modelo.Materia;
+
 import java.util.HashSet;
 
 /**
@@ -15,6 +16,7 @@ import java.util.HashSet;
  * @author 54266
  */
 public class Menu extends javax.swing.JFrame {
+    
 private HashSet<Alumno> todosLosAlumnos=new HashSet<>();
 private HashSet<Materia> todasLasMaterias=new HashSet<>();
 
@@ -43,6 +45,7 @@ private HashSet<Materia> todasLasMaterias=new HashSet<>();
         jMenuItem1 = new javax.swing.JMenuItem();
         jMenuItem2 = new javax.swing.JMenuItem();
         jMenuItem3 = new javax.swing.JMenuItem();
+        jMenuItem6 = new javax.swing.JMenuItem();
         jMenu3 = new javax.swing.JMenu();
         jMenuItem5 = new javax.swing.JMenuItem();
 
@@ -66,14 +69,14 @@ private HashSet<Materia> todasLasMaterias=new HashSet<>();
         escritorioLayout.setHorizontalGroup(
             escritorioLayout.createParallelGroup(javax.swing.GroupLayout.Alignment.LEADING)
             .addGroup(javax.swing.GroupLayout.Alignment.TRAILING, escritorioLayout.createSequentialGroup()
-                .addContainerGap(329, Short.MAX_VALUE)
+                .addContainerGap(699, Short.MAX_VALUE)
                 .addComponent(jButton1)
                 .addGap(15, 15, 15))
         );
         escritorioLayout.setVerticalGroup(
             escritorioLayout.createParallelGroup(javax.swing.GroupLayout.Alignment.LEADING)
             .addGroup(javax.swing.GroupLayout.Alignment.TRAILING, escritorioLayout.createSequentialGroup()
-                .addContainerGap(227, Short.MAX_VALUE)
+                .addContainerGap(854, Short.MAX_VALUE)
                 .addComponent(jButton1)
                 .addGap(18, 18, 18))
         );
@@ -96,13 +99,21 @@ private HashSet<Materia> todasLasMaterias=new HashSet<>();
         });
         jMenu1.add(jMenuItem2);
 
-        jMenuItem3.setText("Formulario de Inscipción");
+        jMenuItem3.setText("Formulario de Inscripción");
         jMenuItem3.addActionListener(new java.awt.event.ActionListener() {
             public void actionPerformed(java.awt.event.ActionEvent evt) {
                 jMenuItem3ActionPerformed(evt);
             }
         });
         jMenu1.add(jMenuItem3);
+
+        jMenuItem6.setText("Formulario de Carga de Notas");
+        jMenuItem6.addActionListener(new java.awt.event.ActionListener() {
+            public void actionPerformed(java.awt.event.ActionEvent evt) {
+                jMenuItem6ActionPerformed(evt);
+            }
+        });
+        jMenu1.add(jMenuItem6);
 
         jMenuBar1.add(jMenu1);
 
@@ -139,6 +150,11 @@ private HashSet<Materia> todasLasMaterias=new HashSet<>();
         pack();
     }// </editor-fold>//GEN-END:initComponents
 
+    
+    
+    
+    
+    
     private void jMenuItem1ActionPerformed(java.awt.event.ActionEvent evt) {//GEN-FIRST:event_jMenuItem1ActionPerformed
         // TODO add your handling code here:
         escritorio.removeAll();
@@ -152,6 +168,13 @@ private HashSet<Materia> todasLasMaterias=new HashSet<>();
         
     }//GEN-LAST:event_jMenuItem1ActionPerformed
 
+    
+    
+    
+    
+    
+    
+    
     private void jMenuItem2ActionPerformed(java.awt.event.ActionEvent evt) {//GEN-FIRST:event_jMenuItem2ActionPerformed
         // TODO add your handling code here:
          escritorio.removeAll();
@@ -164,18 +187,37 @@ private HashSet<Materia> todasLasMaterias=new HashSet<>();
         
     }//GEN-LAST:event_jMenuItem2ActionPerformed
 
+    
+    
+    
+    
+    
+    
     private void jMenuItem3ActionPerformed(java.awt.event.ActionEvent evt) {//GEN-FIRST:event_jMenuItem3ActionPerformed
         // TODO add your handling code here:
         
           escritorio.removeAll();
+          
+        Form_Inscripcion fc = new Form_Inscripcion(todosLosAlumnos,todasLasMaterias);
+        
 
-        Inscripcion fm=new Inscripcion(todosLosAlumnos,todasLasMaterias);
-        fm.setVisible(true);
-        escritorio.add(fm);
+        fc.setVisible(true);
+        escritorio.add(fc);
         escritorio.repaint();
-        escritorio.moveToFront(fm);
+        escritorio.moveToFront(fc);
     }//GEN-LAST:event_jMenuItem3ActionPerformed
 
+    
+    
+    
+ 
+        
+        
+        
+        
+    
+    
+    
     private void jButton1ActionPerformed(java.awt.event.ActionEvent evt) {//GEN-FIRST:event_jButton1ActionPerformed
         dispose();
     }//GEN-LAST:event_jButton1ActionPerformed
@@ -190,6 +232,19 @@ private HashSet<Materia> todasLasMaterias=new HashSet<>();
         // TODO add your handling code here:
         dispose();
     }//GEN-LAST:event_jMenuItem5ActionPerformed
+
+    private void jMenuItem6ActionPerformed(java.awt.event.ActionEvent evt) {//GEN-FIRST:event_jMenuItem6ActionPerformed
+        // TODO add your handling code here:
+                  escritorio.removeAll();
+          
+        Form_Notas fn = new Form_Notas(todosLosAlumnos,todasLasMaterias);
+        
+
+        fn.setVisible(true);
+        escritorio.add(fn);
+        escritorio.repaint();
+        escritorio.moveToFront(fn);
+    }//GEN-LAST:event_jMenuItem6ActionPerformed
 
     /**
      * @param args the command line arguments
@@ -238,5 +293,6 @@ private HashSet<Materia> todasLasMaterias=new HashSet<>();
     private javax.swing.JMenuItem jMenuItem3;
     private javax.swing.JMenuItem jMenuItem4;
     private javax.swing.JMenuItem jMenuItem5;
+    private javax.swing.JMenuItem jMenuItem6;
     // End of variables declaration//GEN-END:variables
 }

@@ -1,12 +1,16 @@
-ULP-TUDS-A-22 - Laboratorio de Programación l C2
+
+# Universidad de la Punta
+## Tecnicatura Universitaria en Desarrollo de Software 2022 
+## Laboratorio de Programación l - Comisión 2
 
 
 Proyecto Transversal Entrega 1:.- Proyecto Universidad(Actividad Grupal)
 
 
-Enunciado
+### Enunciado
 
-Sistema de gestión para la Universidad de La Punta:
+> Sistema de gestión para la Universidad de La Punta
+
 La Universidad de La Punta cree necesario utilizar un systema para poder llevar el registro de
 los alumnos de la institución y las materías que se dictan en la misma. 
 Adicionalmente se necesita poder registrar las materias que cursa cada alumno. 
@@ -23,7 +27,10 @@ y obtiene una calificación de “9” solo quedará registro de esta última.
 3. Permitir que un alumno se pueda inscribir o des-inscribir en las materias que desee
 4. Permitir registrar la calificación final de una materia que está cursando
 5. Permitir el alta, baja y modificación de los alumnos y las materias.
-
+  
+ 
+ 
+ 
 --- B. Tareas: su equipo deberá realizar las siguientes tareas (en ocaciones de forma
 iterativa):
 1. Identificar, en base al enunciado anterior, las clases que serán necesarias, sus
@@ -42,3 +49,9 @@ cumplir con la funcionalidad solicitada en el punto “A”
 equitativa, y deberá utilizar herramientas de colaboración para compartir el código
 del proyecto y mantener una comunicación fluída y efectiva entre los integrantes
 del grupo.
+
+
+
+
+![Captura](https://user-images.githubusercontent.com/62398984/175840915-94b7fe57-8170-4a1d-851a-04704a71711e.JPG)
+![Captura2](https://user-images.githubusercontent.com/62398984/175840930-5ef9f466-2b7c-477f-b6b1-4e4b462ee128.JPG)

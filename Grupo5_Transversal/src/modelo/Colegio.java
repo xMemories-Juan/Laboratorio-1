@@ -7,15 +7,14 @@ package modelo;
 
 import control.Conexion;
 import data.AlumnoData;
-import data.InscripcionData;
+import data.CursadaData;
 import data.MateriaData;
+
 import java.util.List;
 import java.sql.Connection;
-import java.sql.SQLException;
 import java.time.LocalDate;
 import java.time.Month;
 import javax.swing.JOptionPane;
-import vistas.Inscripcion;
 
 /**
  *
@@ -26,79 +25,109 @@ public class Colegio {
     /**
      * @param args the command line arguments
      */
-    public static void main(String[] args) throws SQLException {
-        // TODO code application logic here        
-     Conexion conexion = new Conexion(); 
-         
-        Connection cn = conexion.getConexion();
-       MateriaData ad = new MateriaData(conexion);
+    public static void main(String[] args) {
+    
         
-       /*Materia ingles = new Materia("Ingles",1,true);
-       if(ad.agregarMateria(ingles)){
-           JOptionPane.showMessageDialog(null,"Materia agreada con exito");
-       }*/
-       AlumnoData add= new AlumnoData(conexion);
-       
-       //Alumno juan = new Alumno("Juan","Pardo",LocalDate.of(1988, Month.MARCH, 10),3344553,true);
-      // if(add.agregarAlumno(juan)){
-       //    JOptionPane.showMessageDialog(null,"Alumno agreado con exito");
-      // }
-       
-         
-     
-      
-      InscripcionData ins = new InscripcionData(conexion);  /*
-       //   ins.borrarCursada(1);   //borrado de materia
-       int numMat =1;
-       int numAlum =4;
-       if(ins.verificarCursada(numMat,numAlum)){            //idMateria y luego IdAlumno
-         JOptionPane.showMessageDialog(null," El alumno ya esta inscripto");  
-       }else{
-            JOptionPane.showMessageDialog(null," inscribiendo alumno "); 
-              Alumno alum = add.obtenerAlumnoXId(numAlum);   //debe coincidir con el alumno a cosultar           
-              Materia mat = ad.obtenerMateriaXid(numMat);   //debe coincidir con la materia 
-              Cursada cr= new Cursada(alum,mat,7);                  //modifica nota
-              ins.guardarInscripcion(cr);
-       };*/
+        Conexion conexion = new Conexion();          
+        Connection cn = conexion.getConexion();     
+        
+        AlumnoData ad = new AlumnoData(conexion);
+        
+        Alumno pepe = new Alumno("Juana","Mor",LocalDate.of(1963, Month.MARCH, 12),2336653,true);     
+        Alumno ana = new Alumno("jota","ve",LocalDate.of(1986, Month.MAY, 2),11553,true);
+        
+        
+        
+        
+        
+        
+        
+        
+ // probar agregar materia
+        MateriaData md = new MateriaData(conexion);
+        Materia materia_1 = new Materia("e", 2, true);
+        md.agregarMateria(materia_1);
+        
+        
+        
+        
+        
+        
 
-           
-      
+// probar buscar materia
+        List<Materia> lista_materias = md.obtenerMaterias();
         
-        //List<Cursada> listado = ins.obtenerInscripciones();
+        for(Materia materi:lista_materias){
+            
+            System.out.println("anio "+materi.getAnio());
+
+            System.out.println("nombre  de materia "+materi.getNombre());
+            
+        }
         
-        //for(Cursada curs : listado){
         
-         //   System.out.println("nombre "+curs.getAlumno());
-        //    System.out.println("materia "+curs.getMateria());
-       //     System.out.println("nota "+curs.getNota());
-       // }
         
-         /*List<Cursada> listado = ins.cursadaXAlumno(3);//le paso el ID del alumno y me devuelve el id de las materias
-       
-         for(Cursada cr : listado){
-             System.out.println("Id Materia "+cr.getIdCursada());
-             
-         }*/
-       
-       
         
-        /* AlumnoData ad=new AlumnoData(conexion);
-        Alumno pepe=new Alumno("Leticia","Moreira",LocalDate.of(1973, Month.MARCH, 12),2344553,true);
+        
+        
+        
+// probar agregar  cursada
+        CursadaData cd = new CursadaData(conexion);
+        Cursada cur1 = new Cursada(pepe, materia_1, 3);
+        cd.agregarCursada(cur1);
+        
+        
+        
+        
+        
+        
+        
+        
+        
+        
+        
+        
+System.out.println(" ------------------ ");
+System.out.println("  ");
+System.out.println(" ------------------ ");
         
         if(ad.agregarAlumno(pepe)){
         
             JOptionPane.showMessageDialog(null, "Alumno Agregado Exitosamente");
         }
+        
+        
+        if(ad.agregarAlumno(ana)){
+        
+            JOptionPane.showMessageDialog(null, "Alumno Agregado Exitosamente");
+        }
+                
+                
+                
+        
+        
+        
+        
+        
+        
+        
 
         
-        List<Alumno> lista=ad.obtenerAlumnos();
+        List<Alumno> lista = ad.obtenerAlumnos();
         
         for(Alumno alu:lista){
         
             System.out.println("dni "+alu.getDni());
             System.out.println("apellido "+alu.getApellido());
             System.out.println("nombre "+alu.getNombre());
+            
         }
+        
+        
+        
+        System.out.println(" id 3 es >>> " + ad.obtenerAlumnoXId(3).getDni());
+        
+        
         /*System.out.println("-------------Buscamos por id----------------");
         Alumno aEncontrado=ad.obtenerAlumnoXId(3);
         if(aEncontrado!=null){
@@ -116,26 +145,7 @@ public class Colegio {
         //ad.borrarAlumno(3);
                     
     */
-         
-      /*List<Materia> lista= ins.obtenerMarteriasNoCursadas(1);
         
-        for(Materia cur: lista){
-        
-            System.out.println("id "+cur.getIdMateria());
-            System.out.println("id "+cur.getNombre());
-            System.out.println("id "+cur.getAnio());
-        } */
-     
-      List<Alumno> listas= ins.obtenerAlumnoMateria(2);
-        
-        for(Alumno cur: listas){
-        
-            System.out.println("Apellido:"+cur.getApellido()+" Nombre: "+cur.getNombre()+" DNI: "+cur.getDni());
-            
-        } 
-       
-        
-      
         
 }
 

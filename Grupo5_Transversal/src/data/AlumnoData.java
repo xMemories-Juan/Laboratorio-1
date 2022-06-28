@@ -22,29 +22,33 @@ import java.util.List;
  */
 public class AlumnoData {
     
-  private Connection con = null;
+    private Connection con = null;
 
+  
+  
     public AlumnoData(Conexion conexion) {
       
             con = conexion.getConexion();
         
     }
     
+    
+    
+    
     public boolean agregarAlumno(Alumno alumno) {
 
-        boolean insert = true;
+        boolean insert = true;        
         String sql = "INSERT INTO ALUMNO (nombre, apellido, fechNac, dni, activo)  VALUES (?, ?, ?, ?, ?)";
+        
         try {
-            PreparedStatement ps = con.prepareStatement(sql, Statement.RETURN_GENERATED_KEYS);
             
+            PreparedStatement ps = con.prepareStatement(sql, Statement.RETURN_GENERATED_KEYS);            
             ps.setString(1, alumno.getNombre());
             ps.setString(2, alumno.getApellido());
             ps.setDate(3, Date.valueOf(alumno.getFechNac()));//localDate a Date
             ps.setLong(4, alumno.getDni());
-            ps.setBoolean(5, alumno.isActivo());
-            
-            ps.executeUpdate();
-            
+            ps.setBoolean(5, alumno.isActivo());            
+            ps.executeUpdate();            
             ResultSet rs = ps.getGeneratedKeys();
 
             JOptionPane.showMessageDialog(null, " Se agregó al alumno " + alumno + " correctamente");
@@ -56,7 +60,9 @@ public class AlumnoData {
             }
 
             ps.close();
+            
         } catch (SQLException ex) {
+            
             insert=false;
             if(ex instanceof java.sql.SQLIntegrityConstraintViolationException){
                 JOptionPane.showMessageDialog(null, "Ya existe un alumno con ese dni " );
@@ -69,19 +75,29 @@ public class AlumnoData {
 
         }
         return insert;
-
     }
     
+    
+    
+    
+    
+    
+    
+    
+    
      public List<Alumno> obtenerAlumnos() {
+         
         ArrayList<Alumno> alumnos = new ArrayList<Alumno>();
 
         try {
-            String sql = "SELECT * FROM alumno WHERE activo = 1;";
-            PreparedStatement ps = con.prepareStatement(sql);
             
-            ResultSet resultSet = ps.executeQuery();
+            String sql = "SELECT * FROM alumno WHERE activo = 1;";
+            PreparedStatement ps = con.prepareStatement(sql);        
+            ResultSet resultSet = ps.executeQuery();            
             Alumno alumno;
+            
             while (resultSet.next()) {
+                
                 alumno = new Alumno();
                 alumno.setIdAlumno(resultSet.getInt("idAlumno"));
                 alumno.setApellido(resultSet.getString("apellido"));
@@ -89,10 +105,10 @@ public class AlumnoData {
                 alumno.setFechNac(resultSet.getDate("fechNac").toLocalDate());
                 alumno.setDni(resultSet.getLong("dni"));
                 alumno.setActivo(resultSet.getBoolean("activo"));
-
                 alumnos.add(alumno);
             }
             ps.close();
+            
         } catch (SQLException ex) {
             JOptionPane.showMessageDialog(null,"Error al obtener alumnos");
         }
@@ -100,17 +116,27 @@ public class AlumnoData {
         return alumnos;
     }
     
+     
+     
+     
+     
+     
+     
+     
+     
      public Alumno obtenerAlumnoXId(int id){
      
         Alumno alumno=null;
 
         try {
+            
             String sql = "SELECT * FROM alumno WHERE idAlumno = ? AND activo = 1;";
             PreparedStatement ps = con.prepareStatement(sql);
             ps.setInt(1, id);
             ResultSet resultSet = ps.executeQuery();
             
             while (resultSet.next()) {
+                
                 alumno = new Alumno();
                 alumno.setIdAlumno(resultSet.getInt("idAlumno"));
                 alumno.setApellido(resultSet.getString("apellido"));
@@ -121,6 +147,7 @@ public class AlumnoData {
 
             }
             ps.close();
+            
         } catch (SQLException ex) {
             JOptionPane.showMessageDialog(null,"Error al obtener alumnos");
         }
@@ -128,6 +155,9 @@ public class AlumnoData {
         return alumno;
      }
 
+     
+     
+     
      public Alumno obtenerAlumnoXDNI(long dni){
      
         Alumno alumno=null;
@@ -149,6 +179,7 @@ public class AlumnoData {
 
             }
             ps.close();
+            
         } catch (SQLException ex) {
             JOptionPane.showMessageDialog(null,"Error al obtener alumnos");
         }
@@ -156,10 +187,16 @@ public class AlumnoData {
         return alumno;
      }
      
+     
+     
+     
+     
      public boolean borrarAlumno(int id){
      
          boolean borrado=false;
+         
          String sql= "UPDATE alumno SET activo = 0 WHERE idAlumno = ?";
+         
          try {
              
              PreparedStatement ps= con.prepareStatement(sql);
@@ -177,6 +214,10 @@ public class AlumnoData {
          
          return borrado;
      }
+     
+     
+     
+     
      
      public boolean modificarAlumno(Alumno alumno){
      
