@@ -58,6 +58,11 @@ public class Form_Inscripcion extends javax.swing.JInternalFrame {
     // <editor-fold defaultstate="collapsed" desc="Generated Code">//GEN-BEGIN:initComponents
     private void initComponents() {
 
+        buttonGroup1 = new javax.swing.ButtonGroup();
+        buttonGroup2 = new javax.swing.ButtonGroup();
+        buttonGroup3 = new javax.swing.ButtonGroup();
+        buttonGroup4 = new javax.swing.ButtonGroup();
+        buttonGroup5 = new javax.swing.ButtonGroup();
         jL_Inscripcion = new javax.swing.JLabel();
         jScrollPane2 = new javax.swing.JScrollPane();
         jTable_alumnos = new javax.swing.JTable();
@@ -67,8 +72,6 @@ public class Form_Inscripcion extends javax.swing.JInternalFrame {
         jBut_Anular = new javax.swing.JButton();
         jBut_salir = new javax.swing.JButton();
         jL_listadoMaterias = new javax.swing.JLabel();
-        jRadBut_inscripas = new javax.swing.JRadioButton();
-        jRadBut_No_Inscscripta = new javax.swing.JRadioButton();
         jLabelfondo = new javax.swing.JLabel();
 
         getContentPane().setLayout(new org.netbeans.lib.awtextra.AbsoluteLayout());
@@ -110,29 +113,18 @@ public class Form_Inscripcion extends javax.swing.JInternalFrame {
         jL_listadoMaterias.setFont(new java.awt.Font("Bell MT", 1, 18)); // NOI18N
         jL_listadoMaterias.setText("Listado de Materias");
         getContentPane().add(jL_listadoMaterias, new org.netbeans.lib.awtextra.AbsoluteConstraints(240, 120, -1, 27));
-
-        jRadBut_inscripas.setText("Inscriptas");
-        jRadBut_inscripas.addActionListener(new java.awt.event.ActionListener() {
-            public void actionPerformed(java.awt.event.ActionEvent evt) {
-                jRadBut_inscripasActionPerformed(evt);
-            }
-        });
-        getContentPane().add(jRadBut_inscripas, new org.netbeans.lib.awtextra.AbsoluteConstraints(220, 170, 96, -1));
-
-        jRadBut_No_Inscscripta.setText("No Inscriptas");
-        getContentPane().add(jRadBut_No_Inscscripta, new org.netbeans.lib.awtextra.AbsoluteConstraints(340, 170, -1, -1));
-        getContentPane().add(jLabelfondo, new org.netbeans.lib.awtextra.AbsoluteConstraints(0, 0, 699, 606));
+        getContentPane().add(jLabelfondo, new org.netbeans.lib.awtextra.AbsoluteConstraints(0, 20, 699, 606));
 
         pack();
     }// </editor-fold>//GEN-END:initComponents
 
-    private void jRadBut_inscripasActionPerformed(java.awt.event.ActionEvent evt) {//GEN-FIRST:event_jRadBut_inscripasActionPerformed
-        // TODO add your handling code here:
-       
-    }//GEN-LAST:event_jRadBut_inscripasActionPerformed
-
 
     // Variables declaration - do not modify//GEN-BEGIN:variables
+    private javax.swing.ButtonGroup buttonGroup1;
+    private javax.swing.ButtonGroup buttonGroup2;
+    private javax.swing.ButtonGroup buttonGroup3;
+    private javax.swing.ButtonGroup buttonGroup4;
+    private javax.swing.ButtonGroup buttonGroup5;
     private javax.swing.JButton jBut_Anular;
     private javax.swing.JButton jBut_inscribir;
     private javax.swing.JButton jBut_salir;
@@ -141,8 +133,6 @@ public class Form_Inscripcion extends javax.swing.JInternalFrame {
     private javax.swing.JLabel jL_Inscripcion;
     private javax.swing.JLabel jL_listadoMaterias;
     private javax.swing.JLabel jLabelfondo;
-    private javax.swing.JRadioButton jRadBut_No_Inscscripta;
-    private javax.swing.JRadioButton jRadBut_inscripas;
     private javax.swing.JScrollPane jScrollPane2;
     private javax.swing.JTable jTable_alumnos;
     // End of variables declaration//GEN-END:variables

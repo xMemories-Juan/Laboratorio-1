@@ -4,6 +4,8 @@
  */
 package modelo;
 
+import java.util.Objects;
+
 /**
  *
  * @author saimon
@@ -65,8 +67,9 @@ public class Cursada {
 
     @Override
     public int hashCode() {
-        int hash = 7;
-        hash = 23 * hash + this.idCursada;
+        int hash = 3;
+        hash = 29 * hash + this.idCursada;
+        hash = 29 * hash + Objects.hashCode(this.materia);
         return hash;
     }
 
@@ -85,8 +88,13 @@ public class Cursada {
         if (this.idCursada != other.idCursada) {
             return false;
         }
+        if (!Objects.equals(this.materia, other.materia)) {
+            return false;
+        }
         return true;
     }
+
+
           
     
 

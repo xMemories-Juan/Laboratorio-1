@@ -6,6 +6,8 @@ package control;
 
 import java.sql.Connection;
 import java.sql.DriverManager;
+import java.sql.PreparedStatement;
+import java.sql.ResultSet;
 import java.sql.SQLException;
 import javax.swing.JOptionPane;
 
@@ -33,6 +35,8 @@ public class Conexion {
 //Class.forName("direccion de la calse")
 //new Paquete. subpaquete. nombre de la clase
     }
+    
+    
 
     public Connection getConexion() {
         
@@ -49,6 +53,20 @@ public class Conexion {
        
         return conexion;
     }
+    
+  
+   /* public boolean ifExists(String sSQL, int nId) throws SQLException {
+     Connection cn = DriverManager.getConnection("jdbc:mysql://localhost/bd_universidadg5","root","");  
+    PreparedStatement ps = cn.prepareStatement(sSQL);
+    ps.setInt(1, nId);
+    ResultSet rs = ps.executeQuery();
+    return rs.next();
+    }*/
+    
+         
+}
+   
+
 
     
-}
+
