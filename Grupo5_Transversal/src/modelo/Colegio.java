@@ -7,7 +7,7 @@ package modelo;
 
 import control.Conexion;
 import data.AlumnoData;
-import data.CursadaData;
+import data.InscripcionData;
 import data.MateriaData;
 
 import java.util.List;
@@ -70,11 +70,6 @@ public class Colegio {
         
         
         
-        
-// probar agregar  cursada
-        CursadaData cd = new CursadaData(conexion);
-        Cursada cur1 = new Cursada(pepe, materia_1, 3);
-        cd.agregarCursada(cur1);
         
         
         
