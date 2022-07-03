@@ -48,7 +48,7 @@ public class Colegio {
         Materia materia_1 = new Materia("e", 2, true);
         md.agregarMateria(materia_1);
         
-        
+       
         
         
         
