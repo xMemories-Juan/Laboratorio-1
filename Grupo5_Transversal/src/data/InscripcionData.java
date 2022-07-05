@@ -111,7 +111,7 @@ public class InscripcionData {
     public List<Cursada> obtenerInscripciones() {
         ArrayList<Cursada> inscripciones = new ArrayList();
         try {
-            String sql = "SELECT * FROM cursada;";
+            String sql = "SELECT * FROM cursada ";
             
             PreparedStatement ps = con.prepareStatement(sql);
             

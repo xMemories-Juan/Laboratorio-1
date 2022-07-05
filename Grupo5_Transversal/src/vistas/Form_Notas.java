@@ -35,7 +35,7 @@ import modelo.Materia;
 public class Form_Notas extends javax.swing.JInternalFrame {
 
     private AlumnoData alumnodata;
-     private MateriaData materiaData;
+    private MateriaData materiaData;
     private ArrayList<Alumno> listaAlumnos;
     private InscripcionData cursadaData;
     /**
@@ -50,8 +50,8 @@ public class Form_Notas extends javax.swing.JInternalFrame {
     public Form_Notas(Conexion conexion) {
         initComponents();
         
-         modelo  = new DefaultTableModel();
-         cursadaData = new InscripcionData(conexion);
+        modelo  = new DefaultTableModel();
+        cursadaData = new InscripcionData(conexion);
         alumnodata = new AlumnoData(conexion);
         materiaData = new MateriaData(conexion);
         listaAlumnos = (ArrayList<Alumno>)alumnodata.obtenerAlumnos();
@@ -122,14 +122,14 @@ public class Form_Notas extends javax.swing.JInternalFrame {
      
     
    private void borraFilasTabla(){
-if(modelo!=null){
+   if(modelo!=null){
        int a =modelo.getRowCount()-1;
 
            for(int i=a;i>=0;i--){
    
                 modelo.removeRow(i );
            }
-           //System.out.println("Pasó");
+           
 }
 }
    
