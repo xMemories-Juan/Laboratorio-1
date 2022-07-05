@@ -87,10 +87,6 @@ public class Cursada {
     }
 
     
-    
-    
-    
-    
     public double getNota() {
         return nota;
     }

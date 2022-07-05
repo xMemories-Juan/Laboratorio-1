@@ -50,6 +50,8 @@ public class Form_Notas extends javax.swing.JInternalFrame {
     public Form_Notas(Conexion conexion) {
         initComponents();
         
+         modelo  = new DefaultTableModel();
+         cursadaData = new InscripcionData(conexion);
         alumnodata = new AlumnoData(conexion);
         materiaData = new MateriaData(conexion);
         listaAlumnos = (ArrayList<Alumno>)alumnodata.obtenerAlumnos();
@@ -60,7 +62,7 @@ public class Form_Notas extends javax.swing.JInternalFrame {
            // PreparedStatement pst = gt.prepareStatement("select idAlumno, nombre, apellido, materia");
            // ResultSet rs = pst.executeQuery();
             
-            modelo  = new DefaultTableModel();
+           
             armarCabecera();
             //llenarTabla();
             cargaDatosInscriptas();
@@ -268,20 +270,20 @@ if(modelo!=null){
     boolean respuesta;
         Conexion conexion = new Conexion(); 
         int filaSeleccionada = table.getSelectedRow();
-        
+       System.out.println("fila selecionada"+filaSeleccionada) ; 
     if(filaSeleccionada !=-1){
     
          Alumno a=(Alumno)cbAlumnos.getSelectedItem();  
-         MateriaData mdata = new MateriaData(conexion);
-         InscripcionData md = new InscripcionData(conexion);
+         MateriaData mdata = new MateriaData(conexion);         
         Materia materia = new Materia();
       
         int idMateria = (Integer)modelo.getValueAt(filaSeleccionada,1); 
          materia = mdata.obtenerMateriaXId(idMateria);      
+       
+         String nota =(String) modelo.getValueAt(filaSeleccionada,2);
          
-         double nota =(double) modelo.getValueAt(filaSeleccionada,2);
-         
-         Cursada c = new Cursada(a,materia, nota);//alumno,materia,double nota
+         System.out.println("muestra nota"+modelo.getValueAt(filaSeleccionada,2));
+         Cursada c = new Cursada(a,materia, Double.parseDouble(nota));//alumno,materia,double nota
          
          //JOptionPane.showMessageDialog(this, materia.getNombre());
          
@@ -301,6 +303,7 @@ if(modelo!=null){
 
     private void cbAlumnosActionPerformed(java.awt.event.ActionEvent evt) {//GEN-FIRST:event_cbAlumnosActionPerformed
         borraFilasTabla();
+        cargaDatosInscriptas();
     }//GEN-LAST:event_cbAlumnosActionPerformed
 
 

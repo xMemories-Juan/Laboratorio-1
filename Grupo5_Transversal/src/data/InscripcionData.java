@@ -84,7 +84,7 @@ public class InscripcionData {
         boolean modificado=false;   
        
          String sql= "UPDATE cursada SET nota =? WHERE idAlumno =? AND idMateria=?";  
-        
+         System.out.println("ver Cursada"+cursada);
             try {              
             PreparedStatement ps = con.prepareStatement(sql, Statement.RETURN_GENERATED_KEYS);    
             ps.setDouble(1, cursada.getNota());
@@ -156,14 +156,12 @@ public class InscripcionData {
         }
         pstm.close();
        
-                
     } catch (SQLException e) {
         JOptionPane.showMessageDialog(null, "Error al obtener las materias"); 
     }
 
 return inscripciones;
 }
-    
     
     
     public boolean actualizarNota(int idA, int idM, double nota){
