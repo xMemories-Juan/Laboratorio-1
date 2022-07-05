@@ -2,8 +2,13 @@ package vistas;
 
 
 
+import control.Conexion;
+import data.MateriaData;
+import java.sql.Connection;
+import java.util.ArrayList;
 import modelo.Materia;
 import java.util.HashSet;
+import javax.swing.JOptionPane;
 
 /*
  * To change this license header, choose License Headers in Project Properties.
@@ -17,12 +22,19 @@ import java.util.HashSet;
  */
 public class Formulario_materias extends javax.swing.JInternalFrame {
 private HashSet<Materia> todasLasMaterias;
+private MateriaData materiaData = null;
+
+Conexion conexion = new Conexion();          
+//Connection con = conexion.getConexion(); 
+
     /**
      * Creates new form Formulario_materias
      */
-    public Formulario_materias(HashSet<Materia> todasLasMaterias) {
+    public Formulario_materias(Conexion conexion) {
         initComponents();
-        this.todasLasMaterias=todasLasMaterias;
+         setTitle("Registrar nueva Materia");  
+        this.materiaData = new MateriaData(conexion);        
+        
     }
 
     /**
@@ -43,9 +55,12 @@ private HashSet<Materia> todasLasMaterias;
         jtID = new javax.swing.JTextField();
         jtAnio = new javax.swing.JTextField();
         jLabel4 = new javax.swing.JLabel();
-        jButton1 = new javax.swing.JButton();
-        jButton3 = new javax.swing.JButton();
-        jButton4 = new javax.swing.JButton();
+        jB_Guardar = new javax.swing.JButton();
+        jB_nuevo = new javax.swing.JButton();
+        jB_Salir = new javax.swing.JButton();
+        jB_buscar = new javax.swing.JButton();
+        jCEstado = new javax.swing.JCheckBox();
+        jB_Actualizar1 = new javax.swing.JButton();
 
         jButton2.setText("jButton2");
 
@@ -81,24 +96,55 @@ private HashSet<Materia> todasLasMaterias;
         jLabel4.setFont(new java.awt.Font("Consolas", 1, 36)); // NOI18N
         jLabel4.setText("Formulario de materias ");
 
-        jButton1.setBackground(new java.awt.Color(204, 204, 204));
-        jButton1.setFont(new java.awt.Font("Consolas", 1, 24)); // NOI18N
-        jButton1.setText("Guardar");
-        jButton1.setPreferredSize(new java.awt.Dimension(80, 30));
-        jButton1.addActionListener(new java.awt.event.ActionListener() {
+        jB_Guardar.setBackground(new java.awt.Color(204, 204, 204));
+        jB_Guardar.setFont(new java.awt.Font("Consolas", 1, 24)); // NOI18N
+        jB_Guardar.setText("Guardar");
+        jB_Guardar.setPreferredSize(new java.awt.Dimension(80, 30));
+        jB_Guardar.addActionListener(new java.awt.event.ActionListener() {
             public void actionPerformed(java.awt.event.ActionEvent evt) {
-                jButton1ActionPerformed(evt);
+                jB_GuardarActionPerformed(evt);
             }
         });
 
-        jButton3.setBackground(new java.awt.Color(204, 204, 204));
-        jButton3.setFont(new java.awt.Font("Consolas", 1, 24)); // NOI18N
-        jButton3.setText("Nuevo");
-        jButton3.setPreferredSize(new java.awt.Dimension(80, 30));
+        jB_nuevo.setBackground(new java.awt.Color(204, 204, 204));
+        jB_nuevo.setFont(new java.awt.Font("Consolas", 1, 24)); // NOI18N
+        jB_nuevo.setText("Nuevo");
+        jB_nuevo.setEnabled(false);
+        jB_nuevo.setPreferredSize(new java.awt.Dimension(80, 30));
+        jB_nuevo.addActionListener(new java.awt.event.ActionListener() {
+            public void actionPerformed(java.awt.event.ActionEvent evt) {
+                jB_nuevoActionPerformed(evt);
+            }
+        });
 
-        jButton4.setBackground(new java.awt.Color(204, 204, 204));
-        jButton4.setFont(new java.awt.Font("Consolas", 1, 24)); // NOI18N
-        jButton4.setText("Salir");
+        jB_Salir.setBackground(new java.awt.Color(204, 204, 204));
+        jB_Salir.setFont(new java.awt.Font("Consolas", 1, 24)); // NOI18N
+        jB_Salir.setText("Salir");
+        jB_Salir.addActionListener(new java.awt.event.ActionListener() {
+            public void actionPerformed(java.awt.event.ActionEvent evt) {
+                jB_SalirActionPerformed(evt);
+            }
+        });
+
+        jB_buscar.setIcon(new javax.swing.ImageIcon(getClass().getResource("/image/search_find_lupa_21889.png"))); // NOI18N
+        jB_buscar.addActionListener(new java.awt.event.ActionListener() {
+            public void actionPerformed(java.awt.event.ActionEvent evt) {
+                jB_buscarActionPerformed(evt);
+            }
+        });
+
+        jCEstado.setText("Activa");
+
+        jB_Actualizar1.setBackground(new java.awt.Color(204, 204, 204));
+        jB_Actualizar1.setFont(new java.awt.Font("Consolas", 1, 24)); // NOI18N
+        jB_Actualizar1.setText("Actualizar");
+        jB_Actualizar1.setEnabled(false);
+        jB_Actualizar1.setPreferredSize(new java.awt.Dimension(80, 30));
+        jB_Actualizar1.addActionListener(new java.awt.event.ActionListener() {
+            public void actionPerformed(java.awt.event.ActionEvent evt) {
+                jB_Actualizar1ActionPerformed(evt);
+            }
+        });
 
         javax.swing.GroupLayout jPanel1Layout = new javax.swing.GroupLayout(jPanel1);
         jPanel1.setLayout(jPanel1Layout);
@@ -108,28 +154,29 @@ private HashSet<Materia> todasLasMaterias;
                 .addGap(23, 23, 23)
                 .addGroup(jPanel1Layout.createParallelGroup(javax.swing.GroupLayout.Alignment.LEADING)
                     .addGroup(jPanel1Layout.createSequentialGroup()
+                        .addComponent(jB_Guardar, javax.swing.GroupLayout.PREFERRED_SIZE, 130, javax.swing.GroupLayout.PREFERRED_SIZE)
+                        .addGap(18, 18, 18)
+                        .addComponent(jB_nuevo, javax.swing.GroupLayout.PREFERRED_SIZE, 130, javax.swing.GroupLayout.PREFERRED_SIZE)
+                        .addGap(27, 27, 27)
+                        .addComponent(jB_Actualizar1, javax.swing.GroupLayout.PREFERRED_SIZE, 189, javax.swing.GroupLayout.PREFERRED_SIZE)
+                        .addGap(26, 26, 26)
+                        .addComponent(jB_Salir, javax.swing.GroupLayout.PREFERRED_SIZE, 130, javax.swing.GroupLayout.PREFERRED_SIZE))
+                    .addGroup(jPanel1Layout.createSequentialGroup()
+                        .addComponent(jLabel1, javax.swing.GroupLayout.PREFERRED_SIZE, 109, javax.swing.GroupLayout.PREFERRED_SIZE)
+                        .addGap(248, 248, 248)
+                        .addComponent(jB_buscar, javax.swing.GroupLayout.PREFERRED_SIZE, 51, javax.swing.GroupLayout.PREFERRED_SIZE))
+                    .addComponent(jLabel3)
+                    .addGroup(jPanel1Layout.createSequentialGroup()
                         .addComponent(jLabel2, javax.swing.GroupLayout.PREFERRED_SIZE, 92, javax.swing.GroupLayout.PREFERRED_SIZE)
                         .addGap(49, 49, 49)
                         .addGroup(jPanel1Layout.createParallelGroup(javax.swing.GroupLayout.Alignment.LEADING, false)
-                            .addComponent(jtMateria)
-                            .addComponent(jtID)
-                            .addComponent(jtAnio))
-                        .addGap(0, 356, Short.MAX_VALUE))
-                    .addGroup(jPanel1Layout.createSequentialGroup()
-                        .addComponent(jLabel1, javax.swing.GroupLayout.DEFAULT_SIZE, 203, Short.MAX_VALUE)
-                        .addGap(485, 485, 485))
-                    .addGroup(jPanel1Layout.createSequentialGroup()
-                        .addComponent(jLabel3)
-                        .addContainerGap(javax.swing.GroupLayout.DEFAULT_SIZE, Short.MAX_VALUE))
-                    .addGroup(jPanel1Layout.createSequentialGroup()
-                        .addComponent(jButton1, javax.swing.GroupLayout.PREFERRED_SIZE, 130, javax.swing.GroupLayout.PREFERRED_SIZE)
-                        .addGap(132, 132, 132)
-                        .addComponent(jButton3, javax.swing.GroupLayout.PREFERRED_SIZE, 130, javax.swing.GroupLayout.PREFERRED_SIZE)
-                        .addPreferredGap(javax.swing.LayoutStyle.ComponentPlacement.RELATED, javax.swing.GroupLayout.DEFAULT_SIZE, Short.MAX_VALUE)
-                        .addComponent(jButton4, javax.swing.GroupLayout.PREFERRED_SIZE, 130, javax.swing.GroupLayout.PREFERRED_SIZE)
-                        .addGap(28, 28, 28))))
+                            .addComponent(jtID, javax.swing.GroupLayout.PREFERRED_SIZE, 188, javax.swing.GroupLayout.PREFERRED_SIZE)
+                            .addComponent(jtMateria, javax.swing.GroupLayout.DEFAULT_SIZE, 207, Short.MAX_VALUE)
+                            .addComponent(jtAnio)
+                            .addComponent(jCEstado, javax.swing.GroupLayout.PREFERRED_SIZE, 87, javax.swing.GroupLayout.PREFERRED_SIZE))))
+                .addContainerGap(34, Short.MAX_VALUE))
             .addGroup(javax.swing.GroupLayout.Alignment.TRAILING, jPanel1Layout.createSequentialGroup()
-                .addContainerGap(140, Short.MAX_VALUE)
+                .addContainerGap(javax.swing.GroupLayout.DEFAULT_SIZE, Short.MAX_VALUE)
                 .addComponent(jLabel4)
                 .addGap(110, 110, 110))
         );
@@ -139,22 +186,27 @@ private HashSet<Materia> todasLasMaterias;
                 .addContainerGap()
                 .addComponent(jLabel4)
                 .addGap(13, 13, 13)
-                .addGroup(jPanel1Layout.createParallelGroup(javax.swing.GroupLayout.Alignment.BASELINE)
-                    .addComponent(jLabel1, javax.swing.GroupLayout.PREFERRED_SIZE, 42, javax.swing.GroupLayout.PREFERRED_SIZE)
-                    .addComponent(jtID, javax.swing.GroupLayout.PREFERRED_SIZE, javax.swing.GroupLayout.DEFAULT_SIZE, javax.swing.GroupLayout.PREFERRED_SIZE))
+                .addGroup(jPanel1Layout.createParallelGroup(javax.swing.GroupLayout.Alignment.LEADING)
+                    .addGroup(jPanel1Layout.createParallelGroup(javax.swing.GroupLayout.Alignment.BASELINE)
+                        .addComponent(jLabel1, javax.swing.GroupLayout.PREFERRED_SIZE, 42, javax.swing.GroupLayout.PREFERRED_SIZE)
+                        .addComponent(jtID, javax.swing.GroupLayout.PREFERRED_SIZE, 42, javax.swing.GroupLayout.PREFERRED_SIZE))
+                    .addComponent(jB_buscar, javax.swing.GroupLayout.PREFERRED_SIZE, 38, javax.swing.GroupLayout.PREFERRED_SIZE))
                 .addGap(26, 26, 26)
                 .addGroup(jPanel1Layout.createParallelGroup(javax.swing.GroupLayout.Alignment.BASELINE)
-                    .addComponent(jLabel2, javax.swing.GroupLayout.PREFERRED_SIZE, 29, javax.swing.GroupLayout.PREFERRED_SIZE)
-                    .addComponent(jtMateria, javax.swing.GroupLayout.PREFERRED_SIZE, javax.swing.GroupLayout.DEFAULT_SIZE, javax.swing.GroupLayout.PREFERRED_SIZE))
-                .addGap(34, 34, 34)
+                    .addComponent(jtMateria, javax.swing.GroupLayout.PREFERRED_SIZE, 42, javax.swing.GroupLayout.PREFERRED_SIZE)
+                    .addComponent(jLabel2, javax.swing.GroupLayout.PREFERRED_SIZE, 29, javax.swing.GroupLayout.PREFERRED_SIZE))
+                .addGap(21, 21, 21)
                 .addGroup(jPanel1Layout.createParallelGroup(javax.swing.GroupLayout.Alignment.BASELINE)
                     .addComponent(jLabel3)
-                    .addComponent(jtAnio, javax.swing.GroupLayout.PREFERRED_SIZE, javax.swing.GroupLayout.DEFAULT_SIZE, javax.swing.GroupLayout.PREFERRED_SIZE))
-                .addPreferredGap(javax.swing.LayoutStyle.ComponentPlacement.RELATED, 58, Short.MAX_VALUE)
+                    .addComponent(jtAnio, javax.swing.GroupLayout.PREFERRED_SIZE, 41, javax.swing.GroupLayout.PREFERRED_SIZE))
+                .addGap(23, 23, 23)
+                .addComponent(jCEstado)
+                .addGap(18, 18, 18)
                 .addGroup(jPanel1Layout.createParallelGroup(javax.swing.GroupLayout.Alignment.BASELINE)
-                    .addComponent(jButton3, javax.swing.GroupLayout.PREFERRED_SIZE, 55, javax.swing.GroupLayout.PREFERRED_SIZE)
-                    .addComponent(jButton4, javax.swing.GroupLayout.PREFERRED_SIZE, 55, javax.swing.GroupLayout.PREFERRED_SIZE)
-                    .addComponent(jButton1, javax.swing.GroupLayout.PREFERRED_SIZE, 55, javax.swing.GroupLayout.PREFERRED_SIZE))
+                    .addComponent(jB_nuevo, javax.swing.GroupLayout.PREFERRED_SIZE, 55, javax.swing.GroupLayout.PREFERRED_SIZE)
+                    .addComponent(jB_Guardar, javax.swing.GroupLayout.PREFERRED_SIZE, 55, javax.swing.GroupLayout.PREFERRED_SIZE)
+                    .addComponent(jB_Salir, javax.swing.GroupLayout.PREFERRED_SIZE, 55, javax.swing.GroupLayout.PREFERRED_SIZE)
+                    .addComponent(jB_Actualizar1, javax.swing.GroupLayout.PREFERRED_SIZE, 55, javax.swing.GroupLayout.PREFERRED_SIZE))
                 .addGap(23, 23, 23))
         );
 
@@ -179,14 +231,93 @@ private HashSet<Materia> todasLasMaterias;
         // TODO add your handling code here:
     }//GEN-LAST:event_jtMateriaActionPerformed
 
-    private void jButton1ActionPerformed(java.awt.event.ActionEvent evt) {//GEN-FIRST:event_jButton1ActionPerformed
+    private void jB_GuardarActionPerformed(java.awt.event.ActionEvent evt) {//GEN-FIRST:event_jB_GuardarActionPerformed
         // TODO add your handling code here:
         int id=Integer.parseInt(jtID.getText());
         String nombre=jtMateria.getText();
         int anio=Integer.parseInt(jtAnio.getText());
-       // Materia nm=new Materia(id,nombre,anio);
+        boolean activa = jCEstado.isSelected();
+       MateriaData md = new MateriaData(conexion); 
+       Materia materia =new Materia(nombre, anio, activa);
        // todasLasMaterias.add(nm);
-    }//GEN-LAST:event_jButton1ActionPerformed
+       if(md.agregarMateria(materia)){
+           JOptionPane.showMessageDialog(this,"Materia Agregada con éxito");
+           jtID.setText(materia.getIdMateria()+"");
+           jB_nuevo.setEnabled(true);
+       }
+       
+    }//GEN-LAST:event_jB_GuardarActionPerformed
+
+    private void jB_SalirActionPerformed(java.awt.event.ActionEvent evt) {//GEN-FIRST:event_jB_SalirActionPerformed
+        // TODO add your handling code here:
+     dispose();   
+    }//GEN-LAST:event_jB_SalirActionPerformed
+
+    private void jB_buscarActionPerformed(java.awt.event.ActionEvent evt) {//GEN-FIRST:event_jB_buscarActionPerformed
+        // TODO add your handling code here:              // falta agregar un try para evitar buscar "" vacios
+        int leg=-1;
+        try {
+            leg=Integer.parseInt(jtID.getText());
+            MateriaData md = new MateriaData(conexion);
+           
+            Materia materia = md.obtenerMateriaXId(leg);
+            if(materia != null){
+
+                jtMateria.setText(materia.getNombre());
+                jtAnio.setText(materia.getAnio()+"");                
+                jCEstado.setSelected(materia.isActivo());
+                jB_nuevo.setEnabled(true);
+                jB_Actualizar1.setEnabled(true);
+                jB_Guardar.setEnabled(false);                
+
+            }else{
+                JOptionPane.showMessageDialog(this,"No existe una Materia con ese Código");
+            }
+
+        } catch (Exception e) {
+            JOptionPane.showMessageDialog(this,"Código Inválido ");
+        }
+
+    }//GEN-LAST:event_jB_buscarActionPerformed
+
+    private void jB_nuevoActionPerformed(java.awt.event.ActionEvent evt) {//GEN-FIRST:event_jB_nuevoActionPerformed
+        // TODO add your handling code here:
+        this.jtMateria.setText("");
+        this.jtAnio.setText("");
+        this.jCEstado.setSelected(true);
+        jB_Guardar.setEnabled(true);
+        jB_nuevo.setEnabled(false);        
+        jB_Actualizar1.setEnabled(false); 
+    }//GEN-LAST:event_jB_nuevoActionPerformed
+
+    private void jB_Actualizar1ActionPerformed(java.awt.event.ActionEvent evt) {//GEN-FIRST:event_jB_Actualizar1ActionPerformed
+        // TODO add your handling code here:
+          int id=-1;
+        try {
+            id= Integer.parseInt(jtID.getText());
+
+        } catch (Exception e) {
+            JOptionPane.showMessageDialog(this, "Usted debe ingresar un número");
+            jtID.requestFocus();
+        }
+        String nom=jtMateria.getText();
+        int anio =-1;
+        try{
+            anio =Integer.parseInt(jtAnio.getText());
+        }catch(Exception ex){
+
+            JOptionPane.showMessageDialog(this, "Usted debe ingresar un número");
+            jtAnio.requestFocus();
+        }
+
+        boolean estado = jCEstado.isSelected();
+
+        Materia materia = new Materia(id, nom, anio, estado);
+        if(materiaData.modificarMateria(materia)){
+            JOptionPane.showMessageDialog(this,"Materia Modificado con éxito");
+        }
+        
+    }//GEN-LAST:event_jB_Actualizar1ActionPerformed
 
     /**
      * @param args the command line arguments
@@ -194,10 +325,13 @@ private HashSet<Materia> todasLasMaterias;
    
 
     // Variables declaration - do not modify//GEN-BEGIN:variables
-    private javax.swing.JButton jButton1;
+    private javax.swing.JButton jB_Actualizar1;
+    private javax.swing.JButton jB_Guardar;
+    private javax.swing.JButton jB_Salir;
+    private javax.swing.JButton jB_buscar;
+    private javax.swing.JButton jB_nuevo;
     private javax.swing.JButton jButton2;
-    private javax.swing.JButton jButton3;
-    private javax.swing.JButton jButton4;
+    private javax.swing.JCheckBox jCEstado;
     private javax.swing.JLabel jLabel1;
     private javax.swing.JLabel jLabel2;
     private javax.swing.JLabel jLabel3;
@@ -207,4 +341,5 @@ private HashSet<Materia> todasLasMaterias;
     private javax.swing.JTextField jtID;
     private javax.swing.JTextField jtMateria;
     // End of variables declaration//GEN-END:variables
+
 }

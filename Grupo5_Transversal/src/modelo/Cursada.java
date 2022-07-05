@@ -42,9 +42,10 @@ public class Cursada {
 
     
     
-    
     public Cursada() {
     }
+
+   
 
     
     
@@ -139,15 +140,11 @@ public class Cursada {
     }
 
 
-          
-    
-    
-    
     
 
     @Override
     public String toString() {
-        return "Cursada >>>> {" + "idCursada = " + idCursada + ", alumno = " + alumno + ", materia = " + materia + ", nota = " + nota + '}';
+        return  alumno + ", materia = " + materia + ", nota = " + nota ;
     }
      
      

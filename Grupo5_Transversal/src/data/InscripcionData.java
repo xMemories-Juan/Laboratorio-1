@@ -53,34 +53,59 @@ public class InscripcionData {
     } 
      
         
-    public boolean  guardarInscripcion(Cursada inscripcion) { // no debe dejar inscribir a un alumno en una misma materia 
+    public boolean  guardarInscripcion(Cursada cursada) { // no debe dejar inscribir a un alumno en una misma materia 
         boolean insc=false;   
         
         try {        
-            String sql = "INSERT INTO CURSADA (idAlumno, idMateria, nota) VALUES ( ? , ? , ? );";   
+            String sql = "INSERT INTO cursada (idAlumno, idMateria, nota) VALUES ( ? , ? , ? )";   
             PreparedStatement ps = con.prepareStatement(sql, Statement.RETURN_GENERATED_KEYS);                     
-            ps.setInt(1, inscripcion.getAlumno().getIdAlumno());
-            ps.setInt(2, inscripcion.getMateria().getIdMateria());
-            ps.setDouble(3, inscripcion.getNota());
-
+            ps.setInt(1, cursada.getAlumno().getIdAlumno());
+            ps.setInt(2, cursada.getMateria().getIdMateria());
+            ps.setDouble(3, cursada.getNota());
             ps.executeUpdate();
             ResultSet rs = ps.getGeneratedKeys();
 
             if (rs.next()) {
-                inscripcion.setIdCursada(rs.getInt("id"));
+                cursada.setIdCursada(rs.getInt("id"));
                 JOptionPane.showMessageDialog(null, "Se inscribió al alumno correctamente");
                insc=true;
             } else {
                 JOptionPane.showMessageDialog(null, "No se pudo guardar Inscripción");
             }
             ps.close();
-                              
-           
+                 
         } catch (SQLException ex) {
             JOptionPane.showMessageDialog(null, "El alumno ya está inscripto en esta materia " + ex.getMessage());
         }
         return insc;
     }
+    
+     public boolean cambiarNota(Cursada cursada) { // no debe dejar inscribir a un alumno en una misma materia 
+        boolean modificado=false;   
+       
+         String sql= "UPDATE cursada SET nota =? WHERE idAlumno =? AND idMateria=?";  
+        
+            try {              
+            PreparedStatement ps = con.prepareStatement(sql, Statement.RETURN_GENERATED_KEYS);    
+            ps.setDouble(1, cursada.getNota());
+            ps.setInt(2, cursada.getAlumno().getIdAlumno());
+            ps.setInt(3, cursada.getMateria().getIdMateria());            
+            ps.executeUpdate();
+             
+             if(ps.executeUpdate()!=0){
+             
+                 modificado =true;
+             }
+             ps.close();
+         } catch (SQLException ex) {
+             JOptionPane.showMessageDialog(null, "Error de sintaxis ");
+         }
+    
+        return modificado;
+    }
+    
+    
+    
     
     
     public List<Cursada> obtenerInscripciones() {
@@ -110,16 +135,46 @@ public class InscripcionData {
         return inscripciones;
     }
     
-    public boolean actalizarNota(Alumno alumno, Materia materia, double nota){
-         String sql="UPDATE cursada SET nota = ? WHERE idAlumno = ? AND idMateria=?";
+    public List<Cursada> obtenerMCursadas(Alumno alumno){
+    List<Cursada> inscripciones = new ArrayList<Cursada>();
+    int idA = alumno.getIdAlumno();
+
+    try {
+        String sql = "SELECT * FROM cursada WHERE idAlumno =?";
+        
+        PreparedStatement pstm = con.prepareStatement(sql);
+        pstm.setInt(1, idA);
+        ResultSet rs = pstm.executeQuery();
+        Cursada inscripcion;
+        while(rs.next()){
+        inscripcion = new Cursada();    
+        inscripcion.setIdCursada(rs.getInt("id"));
+        Materia m = materiaData.obtenerMateriaXId(rs.getInt("idMateria"));       
+        inscripcion.setMateria(m);
+        inscripcion.setNota(rs.getDouble("nota"));
+        inscripciones.add(inscripcion);
+        }
+        pstm.close();
+       
+                
+    } catch (SQLException e) {
+        JOptionPane.showMessageDialog(null, "Error al obtener las materias"); 
+    }
+
+return inscripciones;
+}
+    
+    
+    
+    public boolean actualizarNota(int idA, int idM, double nota){
+         
+       
+        String sql="UPDATE cursada SET nota ="+nota+" WHERE idAlumno ="+idA+" AND idMateria="+idM;
          boolean modificado=false;
          
          try {
              PreparedStatement ps= con.prepareStatement(sql);
-             ps.setDouble(1, nota);
-             ps.setInt(2,alumno.getIdAlumno());
-             ps.setInt(3,materia.getIdMateria()); 
-             
+           
              if(ps.executeUpdate()!=0){
              
                  modificado=true;
@@ -138,16 +193,16 @@ Dado un alumno nos devuelva las materias en las que NO está inscripto
 Dada una materia nos devuelva los alumnos inscriptos en ella.*/
 
 public boolean borrarCursada(int idA, int idM){
-     String sql="DELETE * FROM cursada WHERE idAlumno= ? AND idMateria=?";
-     boolean borrada=false;
+    boolean borrada=false;
+     String sql="DELETE FROM cursada WHERE cursada.idAlumno="+idA+" AND idMateria="+idM;
+     
      
      try {
-        PreparedStatement pstm = con.prepareStatement(sql);
-        pstm.setInt(1, idA);
-        pstm.setInt(2,idM);
+        PreparedStatement pstm = con.prepareStatement(sql,Statement.RETURN_GENERATED_KEYS);
+       int rs = pstm.executeUpdate();
      
        
-        if(pstm.executeUpdate()!=0){
+        if(rs != 0){
             borrada= true;            
         }
         pstm.close();        
@@ -161,17 +216,19 @@ public boolean borrarCursada(int idA, int idM){
 
 
 
-public List<Materia> obtenerMateriasCursadas(int idA){
+public List<Materia> obtenerMateriasCursadas(Alumno alumno){
     List<Materia> materias = new ArrayList<Materia>();
-    
+    int idA = alumno.getIdAlumno();
     try        
     {
-        String sql = "SELECT idMateria,nombre "
+      /*  String sql = "SELECT idMateria,nombre "
                 + "FROM cursada, materia"
                 + " WHERE cursada.idMateria = materia.idMateria"
-                + " AND cursada.idAlumno ="+idA;
+                + " AND cursada.idAlumno ="+idA;*/
+        String sq = "SELECT * FROM materia WHERE materia.activo =1 AND idMateria IN (SELECT idMateria FROM cursada WHERE idAlumno =" +idA+")";
+        
               
-        PreparedStatement pstm = con.prepareStatement(sql);
+        PreparedStatement pstm = con.prepareStatement(sq);
           ResultSet resultSet = pstm.executeQuery();
         Materia materia;
         while(resultSet.next()){
@@ -193,13 +250,14 @@ public List<Materia> obtenerMateriasCursadas(int idA){
 }
 
     
-   public List <Materia> obtenerMarteriasNoCursadas(int idA) {        
+   public List <Materia> obtenerMarteriasNoCursadas(Alumno alumno) {        
         
        ArrayList<Materia> noCursadas = new ArrayList<Materia>();                  
-      
+      int idA = alumno.getIdAlumno();
      //String comprueba = "SELECT * FROM cursada JOIN materia ON cursada.idMateria = materia.idMateria  WHERE cursada.idAlumno =?"+idA;
      
-     String comprueba = "SELECT * FROM materia WHERE idMateria NOT IN (SELECT idMateria FROM cursada WHERE idAlumno =" +idA+")";    
+     //String comprueba = "SELECT * FROM materia WHERE idMateria NOT IN (SELECT idMateria FROM cursada WHERE idAlumno =" +idA+")";    
+      String comprueba = "SELECT * FROM materia WHERE materia.activo =1 AND idMateria NOT IN (SELECT idMateria FROM cursada WHERE idAlumno =" +idA+")";    
              
        try {
            PreparedStatement pstm = con.prepareStatement(comprueba);             

@@ -6,8 +6,6 @@ package control;
 
 import java.sql.Connection;
 import java.sql.DriverManager;
-import java.sql.PreparedStatement;
-import java.sql.ResultSet;
 import java.sql.SQLException;
 import javax.swing.JOptionPane;
 
@@ -16,7 +14,7 @@ import javax.swing.JOptionPane;
  * @author saimon
  */
 public class Conexion {
-    private String url = "jdbc:mysql://localhost/uinv";
+    private String url = "jdbc:mysql://localhost/bd_universidadg5";//
     private String usuario = "root";
     private String password = "";
 

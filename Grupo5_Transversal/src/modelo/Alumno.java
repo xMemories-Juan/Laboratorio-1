@@ -90,13 +90,13 @@ public class Alumno {
 
     @Override
     public String toString() {
-        return "Alumno{" + "idAlumno=" + idAlumno + ", nombre=" + nombre + ", apellido=" + apellido + ", dni=" + dni + ", activo=" + activo + '}';
+        return apellido +", "+ nombre + ", " + dni ;
     }
 
     @Override
     public int hashCode() {
         int hash = 7;
-        hash = 37 * hash + this.idAlumno;
+        hash = 37 * hash + this.idAlumno; 
         return hash;
     }
 

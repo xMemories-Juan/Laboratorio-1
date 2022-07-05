@@ -39,7 +39,7 @@ public class AlumnoData {
 
         boolean insert = true;        
         String sql = "INSERT INTO ALUMNO (nombre, apellido, fechNac, dni, activo)  VALUES (?, ?, ?, ?, ?)";
-        
+                      
         try {
             
             PreparedStatement ps = con.prepareStatement(sql, Statement.RETURN_GENERATED_KEYS);            

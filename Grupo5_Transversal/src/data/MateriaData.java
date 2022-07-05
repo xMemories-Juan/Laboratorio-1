@@ -84,9 +84,6 @@ public class MateriaData {
     
     
     
-  
-  
-    
     //////////////////////////////
     //////  leer de BD  ////// 
     //////////////////////////////
@@ -126,14 +123,7 @@ public class MateriaData {
         return materias;
     }
     
-     
-     
     
-     
-     
-    
-      
-     
    
      
      public Materia obtenerMateriaXId(int id){
@@ -166,10 +156,6 @@ public class MateriaData {
         return materia;
      }
 
-     
-     
-     
-    
     
     
       
@@ -204,13 +190,7 @@ public class MateriaData {
 
         return alumno;
      }
-     
-     
-     
-     
-     
-     
-     
+  
      
          
     //////////////////////////////
@@ -241,28 +221,22 @@ public class MateriaData {
          return borrado;
      }
      
-     
-     
-     
-     
-     
+     */
      
      //////////////////////////////
     //////  modificar en BD  ////// 
     //////////////////////////////
      
-     public boolean modificarMateria(Alumno alumno){
-     
-         String sql="UPDATE alumno SET nombre = ?, apellido = ?, fechNac = ?, dni = ?, activo = ? WHERE idAlumno = ?";
+     public boolean modificarMateria(Materia materia){     
+       
+         String sql = "UPDATE materia SET nombre = ?, anio= ?, activo=? WHERE idMateria = ?";
          boolean modificado=false;
      try {
              PreparedStatement ps= con.prepareStatement(sql);
-             ps.setString(1, alumno.getNombre());
-             ps.setString(2, alumno.getApellido());
-             ps.setDate(3,Date.valueOf(alumno.getFechNac()));
-             ps.setLong(4, alumno.getDni());
-             ps.setBoolean(5, alumno.isActivo());
-             ps.setInt(6, alumno.getIdAlumno());
+             ps.setString(1, materia.getNombre());
+             ps.setInt(2, materia.getAnio());
+             ps.setBoolean(3, materia.isActivo());
+             ps.setInt(4, materia.getIdMateria()); 
              
              if(ps.executeUpdate()!=0){
              
@@ -276,7 +250,7 @@ public class MateriaData {
      }   
     
      
-     */
+     
      
      
      

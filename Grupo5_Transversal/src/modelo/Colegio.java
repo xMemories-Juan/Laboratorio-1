@@ -29,32 +29,32 @@ public class Colegio {
     
         
         Conexion conexion = new Conexion();          
-        Connection cn = conexion.getConexion();     
+      //  Connection cn = conexion.getConexion();     
         
-        AlumnoData ad = new AlumnoData(conexion);
+        //AlumnoData ad = new AlumnoData(conexion);
         
         Alumno pepe = new Alumno("Juana","Mor",LocalDate.of(1963, Month.MARCH, 12),2336653,true);     
-        Alumno ana = new Alumno("jota","ve",LocalDate.of(1986, Month.MAY, 2),11553,true);
-        
-        
-        
-        
-        
-        
-        
-        
+       // Alumno ana = new Alumno("jota","ve",LocalDate.of(1986, Month.MAY, 2),11553,true);
+        Alumno leti = new Alumno("Leticia","Moreira",LocalDate.of(1973, Month.MARCH, 12),2344553,true);
+       
  // probar agregar materia
-        MateriaData md = new MateriaData(conexion);
-        Materia materia_1 = new Materia("e", 2, true);
-        md.agregarMateria(materia_1);
-        
-        
-        
-        
+      //  MateriaData md = new MateriaData(conexion);
+      //  Materia materia_1 = new Materia("e", 2, true);
+     //   md.agregarMateria(materia_1);
+         //Materia mate = new Materia(1, "Laboratorio 1", 1, true);
+       //   md.modificarMateria(mate);
+   
+     InscripcionData idta = new InscripcionData(conexion);
+  List<Cursada> lista_cursada =  idta.obtenerMCursadas(leti);
+    
+  for(Cursada curs: lista_cursada){
+      
+      System.out.println("idCursada= "+curs.getIdCursada()+ " nota= "+curs.getNota());
+  }
         
         
 
-// probar buscar materia
+/* probar buscar materia
         List<Materia> lista_materias = md.obtenerMaterias();
         
         for(Materia materi:lista_materias){
@@ -64,6 +64,7 @@ public class Colegio {
             System.out.println("nombre  de materia "+materi.getNombre());
             
         }
+        */
         
         
         
@@ -78,8 +79,7 @@ public class Colegio {
         
         
         
-        
-        
+ /*       
         
         
 System.out.println(" ------------------ ");
@@ -95,7 +95,7 @@ System.out.println(" ------------------ ");
         if(ad.agregarAlumno(ana)){
         
             JOptionPane.showMessageDialog(null, "Alumno Agregado Exitosamente");
-        }
+        }*/
                 
                 
                 
@@ -106,7 +106,7 @@ System.out.println(" ------------------ ");
         
         
         
-
+/*
         
         List<Alumno> lista = ad.obtenerAlumnos();
         
