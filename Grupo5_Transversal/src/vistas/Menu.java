@@ -51,6 +51,7 @@ AlumnoData alumnoData = new AlumnoData(conexion);
         jMenuItem2 = new javax.swing.JMenuItem();
         jMenuItem3 = new javax.swing.JMenuItem();
         jMenuItem6 = new javax.swing.JMenuItem();
+        jMenuItem7 = new javax.swing.JMenuItem();
         jMenu3 = new javax.swing.JMenu();
         jMenuItem5 = new javax.swing.JMenuItem();
 
@@ -119,6 +120,14 @@ AlumnoData alumnoData = new AlumnoData(conexion);
             }
         });
         jMenu1.add(jMenuItem6);
+
+        jMenuItem7.setText("Alumno Materias");
+        jMenuItem7.addActionListener(new java.awt.event.ActionListener() {
+            public void actionPerformed(java.awt.event.ActionEvent evt) {
+                jMenuItem7ActionPerformed(evt);
+            }
+        });
+        jMenu1.add(jMenuItem7);
 
         jMenuBar1.add(jMenu1);
 
@@ -202,14 +211,6 @@ AlumnoData alumnoData = new AlumnoData(conexion);
     
     
     
- 
-        
-        
-        
-        
-    
-    
-    
     private void jButton_SalirActionPerformed(java.awt.event.ActionEvent evt) {//GEN-FIRST:event_jButton_SalirActionPerformed
      dispose();
     }//GEN-LAST:event_jButton_SalirActionPerformed
@@ -236,6 +237,16 @@ AlumnoData alumnoData = new AlumnoData(conexion);
         escritorio.repaint();
         escritorio.moveToFront(fn);
     }//GEN-LAST:event_jMenuItem6ActionPerformed
+
+    private void jMenuItem7ActionPerformed(java.awt.event.ActionEvent evt) {//GEN-FIRST:event_jMenuItem7ActionPerformed
+        // TODO add your handling code here:
+      escritorio.removeAll();   
+       escritorio.repaint();
+      Form_AlumnoMateria av = new Form_AlumnoMateria();
+      av.setVisible(true);
+      escritorio.add(av);
+      escritorio.moveToFront(av);
+    }//GEN-LAST:event_jMenuItem7ActionPerformed
 
     /**
      * @param args the command line arguments
@@ -288,5 +299,6 @@ AlumnoData alumnoData = new AlumnoData(conexion);
     private javax.swing.JMenuItem jMenuItem4;
     private javax.swing.JMenuItem jMenuItem5;
     private javax.swing.JMenuItem jMenuItem6;
+    private javax.swing.JMenuItem jMenuItem7;
     // End of variables declaration//GEN-END:variables
 }
